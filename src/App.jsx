@@ -21,7 +21,7 @@ const cache = createCache({
 export default function App() {
   const [hydrated, setHydrated] = useState(false);
   const { setEnvVars } = useSetEnvVarContext();
-  const { loading, data } = useQuery(ENV_QUERY);
+  const { loading, data = { getPublicEnvVars: {} } } = useQuery(ENV_QUERY);
 
   // After App has mounted, set hydrated to true
   useEffect(() => {

@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+/* global localStorage */
 import {
   createContext,
   useState,
@@ -40,7 +40,9 @@ export default function ColorMode({ children }) {
 
   const colorMode = useMemo(
     () => ({
-      // The dark mode switch would invoke this method
+      /*
+        When we toggle dark mode, persist in localStorage for next page and visit.
+      */
       toggleColorMode: () => {
         setMode((prevMode) => (
           prevMode === 'light' ? 'dark' : 'light'

@@ -9,11 +9,19 @@ export default function MenuBar() {
   const { toggleColorMode } = useColorMode();
 
   return (
-    <Box display="inline-block">
+    <Box
+      display="flex"
+      flexDirection="row"
+      justifyContent="right"
+      alignItems="center"
+      padding="1rem"
+      fontSize="1.3rem"
+    >
       <Link href="/" paddingRight="10px">Home</Link>
+      <Link href="/blog" paddingRight="10px">Blog</Link>
       <Link href="/blog/2023-04-22">Latest</Link>
       <IconButton
-        sx={{ ml: 1 }}
+        sx={{ ml: 5 }}
         onClick={toggleColorMode}
         color="inherit"
       >
