@@ -9,7 +9,7 @@ import { cjsInterop } from 'vite-plugin-cjs-interop';
 export default defineConfig({
   root: join(dirname(fileURLToPath(new URL(import.meta.url))), 'src'),
   plugins: [
-    react({ jsxRuntime: 'classic' }),
+    react({ jsxRuntime: '@emotion/react' }),
     cjsInterop({
       dependencies: [
         '@emotion/cache',

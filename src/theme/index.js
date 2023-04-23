@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import { createTheme } from '@mui/material/node/styles/index.js';
 
 const makeTheme = (mode) => createTheme({
   palette: {
