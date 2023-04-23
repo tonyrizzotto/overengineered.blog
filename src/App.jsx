@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import createCache from '@emotion/cache';
-import { ThemeProvider, CacheProvider } from '@emotion/react';
+import { CacheProvider } from '@emotion/react';
 import { CssBaseline } from '@mui/material';
 import { useQuery } from 'graphql-hooks';
+import ColorMode from './contexts/colorModeContext';
 import AppContainer from './components/AppContainer';
 import MenuBar from './components/MenuBar';
 import { useSetEnvVarContext } from './contexts/envVarContext';
 import Router from './Routes';
-import theme from './theme';
 import { ENV_QUERY } from './queries';
 
 const cache = createCache({
@@ -43,13 +43,13 @@ export default function App() {
 
   return (
     <CacheProvider value={cache}>
-      <ThemeProvider theme={theme}>
+      <ColorMode>
         <CssBaseline />
         <AppContainer>
           <MenuBar />
           <Router hydrated={hydrated} />
         </AppContainer>
-      </ThemeProvider>
+      </ColorMode>
     </CacheProvider>
   );
 }

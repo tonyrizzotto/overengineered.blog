@@ -1,11 +1,11 @@
-import { Box } from '@mui/material'
+import CodeSnippet from '../../../components/CodeSnippet';
 
 # Hello!
 
-<Box sx={{ margin: '50px' }}>
-This is some text!
-</Box>
+<CodeSnippet>
+  ```js
+  const var = 'new var'
+  console.log(var);
+  ```
+</CodeSnippet>
 
-```js
-console.log('hello world')
-```
