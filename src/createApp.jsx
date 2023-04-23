@@ -3,6 +3,11 @@ import EnvironmentContext from './contexts/envVarContext';
 import GraphQLContext, { graphQLClient } from './contexts/graphQLContext';
 import App from './App';
 
+
+/* 
+  `createApp` is for anything that does not need the window object or document, specifically
+  as it's not loaded from the server yet.
+*/
 export default function createApp() {
   return (
     <StrictMode>

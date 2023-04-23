@@ -1,9 +1,21 @@
 import { useEffect, useState } from 'react';
+import createCache from '@emotion/cache';
+import { ThemeProvider, CacheProvider } from '@emotion/react';
+import { CssBaseline } from '@mui/material';
 import { useQuery } from 'graphql-hooks';
 import { useSetEnvVarContext } from './contexts/envVarContext';
 import Router from './Routes';
+import theme from './theme';
 import { ENV_QUERY } from './queries';
 
+const cache = createCache({
+  key: 'tonyrizzotto',
+});
+
+/*
+  `App` component is for anything used to initialize the application after the
+  document has loaded, or been `hydrated` to the client.
+ */
 export default function App() {
   const [hydrated, setHydrated] = useState(false);
   const { setEnvVars } = useSetEnvVarContext();
@@ -28,6 +40,11 @@ export default function App() {
   }
 
   return (
-    <Router hydrated={hydrated} />
+    <CacheProvider value={cache}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Router hydrated={hydrated} />
+      </ThemeProvider>
+    </CacheProvider>
   );
 }

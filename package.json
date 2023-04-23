@@ -40,10 +40,14 @@
     "url": "https://github.com/tonyrizzotto/react-app-template.git"
   },
   "dependencies": {
+    "@emotion/cache": "^11.10.7",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@fastify/static": "^6.10.0",
     "@fastify/vite": "^4.0.0",
     "@graphql-tools/merge": "^8.4.1",
     "@graphql-tools/schema": "^9.0.18",
+    "@mui/material": "^5.12.1",
     "@vitejs/plugin-react": "^3.1.0",
     "dotenv": "^16.0.3",
     "fastify": "^4.15.0",
@@ -70,6 +74,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "nodemon": "^2.0.22",
-    "pino-pretty": "^10.0.0"
+    "pino-pretty": "^10.0.0",
+    "vite-plugin-cjs-interop": "^0.0.8"
   }
 }
