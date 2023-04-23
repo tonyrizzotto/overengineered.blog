@@ -1,4 +1,6 @@
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'graphql-hooks';
+import { Box, Button } from '@mui/material';
 
 const HELLO_QUERY = `
   query Hello($name: String!) {
@@ -7,19 +9,26 @@ const HELLO_QUERY = `
 `;
 
 export default function Home() {
+  const navigate = useNavigate();
   const { loading, data } = useQuery(HELLO_QUERY, {
     variables: {
       name: 'My Friend',
     },
   });
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Box>Loading...</Box>;
 
   return (
-    <div>
+    <Box>
       {!loading && (
-        `${data.hello}! Welcome to your Server-side Rendered React/Vite/Fastify Application!`
+        `${data.hello}! Welcome to a completely over-engineered personal website!`
       )}
-    </div>
+      <br />
+      <Button
+        onClick={() => navigate('/blog')}
+      >
+        Navigate to Blog
+      </Button>
+    </Box>
   );
 }
