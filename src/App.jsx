@@ -3,6 +3,8 @@ import createCache from '@emotion/cache';
 import { ThemeProvider, CacheProvider } from '@emotion/react';
 import { CssBaseline } from '@mui/material';
 import { useQuery } from 'graphql-hooks';
+import AppContainer from './components/AppContainer';
+import MenuBar from './components/MenuBar';
 import { useSetEnvVarContext } from './contexts/envVarContext';
 import Router from './Routes';
 import theme from './theme';
@@ -14,7 +16,7 @@ const cache = createCache({
 
 /*
   `App` component is for anything used to initialize the application after the
-  document has loaded, or been `hydrated` to the client.
+  document has loaded, or been `hydrated`, to the client.
  */
 export default function App() {
   const [hydrated, setHydrated] = useState(false);
@@ -43,7 +45,10 @@ export default function App() {
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Router hydrated={hydrated} />
+        <AppContainer>
+          <MenuBar />
+          <Router hydrated={hydrated} />
+        </AppContainer>
       </ThemeProvider>
     </CacheProvider>
   );
