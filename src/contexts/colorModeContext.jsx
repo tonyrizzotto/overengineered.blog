@@ -1,10 +1,10 @@
+/* eslint-disable no-undef */
 import {
   createContext,
   useState,
   useMemo,
   useContext,
 } from 'react';
-import { useMediaQuery } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 import makeTheme from '../theme';
 
@@ -20,10 +20,23 @@ export function useColorMode() {
   return { toggleColorMode, mode };
 }
 
+export function getPreferredColorMode() {
+  let colorMode;
+
+  if (typeof localStorage !== 'undefined') {
+    colorMode = localStorage.getItem('tr_color_mode');
+  } else if (this.matchMedia('(prefers-color-scheme: dark)').matches()) {
+    colorMode = 'dark';
+  } else {
+    colorMode = 'light';
+  }
+
+  return colorMode;
+}
+
 // eslint-disable-next-line react/prop-types
 export default function ColorMode({ children }) {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const [mode, setMode] = useState(prefersDarkMode ? 'dark' : 'light');
+  const [mode, setMode] = useState(getPreferredColorMode());
 
   const colorMode = useMemo(
     () => ({
@@ -32,6 +45,7 @@ export default function ColorMode({ children }) {
         setMode((prevMode) => (
           prevMode === 'light' ? 'dark' : 'light'
         ));
+        localStorage.setItem('tr_color_mode', mode === 'light' ? 'dark' : 'light');
       },
       mode,
     }),
