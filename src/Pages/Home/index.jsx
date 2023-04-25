@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'graphql-hooks';
 import { Box, Button } from '@mui/material';
+import PageWrapper from '../../components/PageWrapper';
 
 const HELLO_QUERY = `
   query Hello($name: String!) {
@@ -16,19 +17,23 @@ export default function Home() {
     },
   });
 
-  if (loading) return <Box>Loading...</Box>;
+  if (loading) return <PageWrapper>Loading...</PageWrapper>;
 
   return (
-    <Box>
+    <PageWrapper>
       {!loading && (
-        `${data.hello}! Welcome to a completely over-engineered personal website!`
+        <Box>
+          <Box>
+            {data.hello}
+            ! Welcome to a completely over-engineered blog!
+          </Box>
+          <Button
+            onClick={() => navigate('/blog')}
+          >
+            Navigate to Blog
+          </Button>
+        </Box>
       )}
-      <br />
-      <Button
-        onClick={() => navigate('/blog')}
-      >
-        Navigate to Blog
-      </Button>
-    </Box>
+    </PageWrapper>
   );
 }

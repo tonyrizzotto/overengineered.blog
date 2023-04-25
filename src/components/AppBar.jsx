@@ -46,7 +46,7 @@ function ResponsiveAppBar() {
       position="static"
       sx={{
         borderRadius: '0 0 8px 8px',
-        backgroundColor: theme.palette.background.codeSnippet,
+        backgroundColor: theme.palette.background.header,
       }}
     >
       <Container maxWidth="xl">
@@ -71,7 +71,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            Tony
+            TR
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -140,7 +140,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            TR
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {/* Desktop */}

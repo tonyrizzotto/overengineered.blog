@@ -44,7 +44,7 @@ export default function App() {
   return (
     <CacheProvider value={cache}>
       <ColorMode>
-        <CssBaseline />
+        <CssBaseline enableColorScheme />
         <AppContainer>
           <AppBar />
           <Router hydrated={hydrated} />

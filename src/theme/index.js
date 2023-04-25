@@ -5,15 +5,28 @@ const makeTheme = (mode) => createTheme({
     mode,
     ...(mode === 'dark' && {
       background: {
-        codeSnippet: '#212429',
+        default: '#282c35',
+        header: '#212429',
+        codeSnippet: 'hsla(205, 95%, 17%, 0.55)',
       },
     }),
     ...(mode === 'light' && {
       background: {
-        codeSnippet: '#e3e4e6',
+        default: '#f9fafb',
+        header: '#f3f5f7',
+        codeSnippet: 'hsla(220, 6%, 87%, 0.90)',
       },
     }),
   },
+  // components: {
+  //   MuiCssBaseline: {
+  //     '@global': {
+  //       body: {
+  //         transition: 'all 0.5s linear',
+  //       },
+  //     },
+  //   },
+  // },
 });
 
 export default makeTheme;

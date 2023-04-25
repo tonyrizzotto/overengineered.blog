@@ -1,3 +1,7 @@
+import PageWrapper from '../../components/PageWrapper';
+
 export default function Blog() {
-  return <div>My Blog</div>;
+  return (
+    <PageWrapper>My Blog</PageWrapper>
+  );
 }
