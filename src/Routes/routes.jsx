@@ -1,6 +1,6 @@
-import Blog from '../Pages/Blog';
-import Home from '../Pages/Home';
-import First from '../Pages/Blog/posts/2023-04-22.mdx';
+import Blog from '../pages/Blog';
+import Home from '../pages/Home';
+import First from '../pages/Blog/posts/2023-04-22.mdx';
 
 /*
   https://reactrouter.com/en/main/routers/create-browser-router#createbrowserrouter

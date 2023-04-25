@@ -18,6 +18,7 @@ import {
   MenuItem,
 } from '@mui/material';
 import { useColorMode } from '../contexts/colorModeContext';
+import rocketLink from '../assets/rocket.svg';
 
 const pages = [
   {
@@ -52,7 +53,7 @@ function ResponsiveAppBar() {
         <Toolbar disableGutters>
           <Avatar
             alt="Tony Rizzotto"
-            src="../assets/rocket.svg"
+            src={rocketLink}
             sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
           />
           <Typography
@@ -120,7 +121,7 @@ function ResponsiveAppBar() {
           </Box>
           <Avatar
             alt="Tony Rizzotto"
-            src="../assets/rocket.svg"
+            src={rocketLink}
             sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
           />
           <Typography
