@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material/node/styles/index.js';
 
-const makeTheme = (mode) => createTheme({
+const makeTheme = ({ mode, shouldPlayTransition }) => createTheme({
   palette: {
     mode,
     ...(mode === 'dark' && {
@@ -18,15 +18,17 @@ const makeTheme = (mode) => createTheme({
       },
     }),
   },
-  // components: {
-  //   MuiCssBaseline: {
-  //     '@global': {
-  //       body: {
-  //         transition: 'all 0.5s linear',
-  //       },
-  //     },
-  //   },
-  // },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        ...(shouldPlayTransition && {
+          body: {
+            transition: 'background 0.3s linear',
+          },
+        }),
+      },
+    },
+  },
 });
 
 export default makeTheme;

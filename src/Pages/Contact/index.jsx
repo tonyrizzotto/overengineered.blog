@@ -1,9 +1,9 @@
 import PageWrapper from '../../components/PageWrapper';
 
-export default function About() {
+export default function Contact() {
   return (
     <PageWrapper>
-      This is alllll about me
+      Want a little contact?
     </PageWrapper>
   );
 }

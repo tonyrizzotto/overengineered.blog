@@ -1,3 +1,4 @@
+/* global localStorage */
 import { useEffect, useState } from 'react';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
@@ -20,12 +21,15 @@ const cache = createCache({
  */
 export default function App() {
   const [hydrated, setHydrated] = useState(false);
+  const [previousMode, setPreviousMode] = useState(null);
   const { setEnvVars } = useSetEnvVarContext();
   const { loading, data = { getPublicEnvVars: {} } } = useQuery(ENV_QUERY);
 
   // After App has mounted, set hydrated to true
+  // Grab previous theme setting to prevent flashes on page change.
   useEffect(() => {
     setHydrated(true);
+    setPreviousMode(localStorage.getItem('tr_prev_color_mode'));
   }, []);
 
   // Aside from hydration, we only want the rerender the initial app if the ENV Query has finished.
@@ -43,7 +47,7 @@ export default function App() {
 
   return (
     <CacheProvider value={cache}>
-      <ColorMode>
+      <ColorMode previousMode={previousMode}>
         <CssBaseline enableColorScheme />
         <AppContainer>
           <AppBar />

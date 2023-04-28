@@ -25,6 +25,18 @@ const pages = [
     name: 'Blog',
     url: '/blog',
   },
+  {
+    name: 'About',
+    url: '/about',
+  },
+  {
+    name: 'Projects',
+    url: '/projects',
+  },
+  {
+    name: 'Contact',
+    url: '/contact',
+  },
 ];
 
 function ResponsiveAppBar() {
@@ -107,7 +119,7 @@ function ResponsiveAppBar() {
               {pages.map((page) => (
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
                   <Link
-                    href="/blog"
+                    href={page.url}
                     sx={{
                       textDecoration: 'none',
                       color: 'inherit',
@@ -142,13 +154,13 @@ function ResponsiveAppBar() {
           >
             TR
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, justifyContent: 'right', display: { xs: 'none', md: 'flex' } }}>
             {/* Desktop */}
             {pages.map((page) => (
               <Button
                 key={page.name}
                 onClick={handleCloseNavMenu}
-                href="/blog"
+                href={page.url}
                 sx={{ my: 2, color: theme.palette.text.primary, display: 'block' }}
               >
                 {page.name}
