@@ -6,6 +6,7 @@ import {
   useContext,
 } from 'react';
 import { ThemeProvider } from '@emotion/react';
+// import { useTheme } from '@mui/material/node/styles';
 import makeTheme from '../theme';
 
 const ColorModeContext = createContext();
@@ -38,6 +39,7 @@ export function getPreferredColorMode() {
 export default function ColorMode({ previousMode, children }) {
   const [mode, setMode] = useState(getPreferredColorMode());
 
+  // const theme = useTheme();
   const preferredColorMode = useMemo(
     () => ({
       /*
@@ -55,7 +57,7 @@ export default function ColorMode({ previousMode, children }) {
       },
       mode,
     }),
-    [mode],
+    [],
   );
 
   /*
@@ -65,10 +67,10 @@ export default function ColorMode({ previousMode, children }) {
     transition properly.
    */
   const shouldPlayTransition = mode === previousMode;
-  const theme = useMemo(() => makeTheme({ mode, shouldPlayTransition }), [mode]);
+  const themeContext = useMemo(() => makeTheme({ mode, shouldPlayTransition }), [mode]);
   return (
     <ColorModeContext.Provider value={preferredColorMode}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={themeContext}>
         {children}
       </ThemeProvider>
     </ColorModeContext.Provider>
