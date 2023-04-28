@@ -1,6 +1,8 @@
+import About from '../pages/About';
 import Blog from '../pages/Blog';
 import Home from '../pages/Home';
 import First from '../pages/Blog/posts/2023-04-22.mdx';
+import ErrorBoundary from '../components/ErrorBoundary';
 
 /*
   https://reactrouter.com/en/main/routers/create-browser-router#createbrowserrouter
@@ -16,10 +18,15 @@ const routeConfig = [
   {
     path: '/',
     element: <Home />,
+    errorElement: <ErrorBoundary />,
   },
   {
     path: 'blog',
     element: <Blog />,
+  },
+  {
+    path: 'about',
+    element: <About />,
   },
   {
     path: '/blog/2023-04-22',
