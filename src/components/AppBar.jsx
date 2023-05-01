@@ -1,3 +1,5 @@
+/* global localStorage */
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useTheme } from '@mui/material/node/styles/index.js';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
@@ -39,7 +41,7 @@ const pages = [
   },
 ];
 
-function ResponsiveAppBar() {
+function ResponsiveAppBar({ previousMode, setPreviousMode }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -53,12 +55,22 @@ function ResponsiveAppBar() {
   const theme = useTheme();
   const { toggleColorMode } = useColorMode();
 
+  const handleColorModeChange = () => {
+    toggleColorMode();
+    if (previousMode === 'light') {
+      setPreviousMode('dark');
+    } else {
+      setPreviousMode('light');
+    }
+    localStorage.setItem('tr_color_mode', previousMode);
+  };
   return (
     <AppBar
       position="static"
       sx={{
         borderRadius: '0 0 8px 8px',
         backgroundColor: theme.palette.background.header,
+        transition: theme.transitions.custom.colorMode,
       }}
     >
       <Container maxWidth="xl">
@@ -172,7 +184,7 @@ function ResponsiveAppBar() {
             <Tooltip title="Toggle Color Mode!">
               <IconButton
                 sx={{ ml: 5 }}
-                onClick={toggleColorMode}
+                onClick={handleColorModeChange}
               >
                 {theme?.palette?.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
               </IconButton>
@@ -184,3 +196,8 @@ function ResponsiveAppBar() {
   );
 }
 export default ResponsiveAppBar;
+
+ResponsiveAppBar.propTypes = {
+  previousMode: PropTypes.string.isRequired,
+  setPreviousMode: PropTypes.func.isRequired,
+};

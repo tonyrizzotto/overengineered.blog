@@ -5,9 +5,10 @@ const makeTheme = ({ mode, shouldPlayTransition }) => createTheme({
     mode,
     ...(mode === 'dark' && {
       background: {
-        default: '#282c35',
+        default: '#091A28',
         header: '#212429',
-        codeSnippet: 'hsla(205, 95%, 17%, 0.55)',
+        accent: '#01933F',
+        codeSnippet: '#0E2233',
       },
     }),
     ...(mode === 'light' && {
@@ -17,6 +18,11 @@ const makeTheme = ({ mode, shouldPlayTransition }) => createTheme({
         codeSnippet: 'hsla(220, 6%, 87%, 0.90)',
       },
     }),
+  },
+  transitions: {
+    custom: {
+      colorMode: 'background 0.3s linear',
+    },
   },
   components: {
     MuiCssBaseline: {

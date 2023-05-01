@@ -50,7 +50,7 @@ export default function App() {
       <ColorMode previousMode={previousMode}>
         <CssBaseline enableColorScheme />
         <AppContainer>
-          <AppBar />
+          <AppBar previousMode={previousMode} setPreviousMode={setPreviousMode} />
           <Router hydrated={hydrated} />
         </AppContainer>
       </ColorMode>

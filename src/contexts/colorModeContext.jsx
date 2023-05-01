@@ -6,7 +6,6 @@ import {
   useContext,
 } from 'react';
 import { ThemeProvider } from '@emotion/react';
-// import { useTheme } from '@mui/material/node/styles';
 import makeTheme from '../theme';
 
 const ColorModeContext = createContext();
@@ -39,7 +38,6 @@ export function getPreferredColorMode() {
 export default function ColorMode({ previousMode, children }) {
   const [mode, setMode] = useState(getPreferredColorMode());
 
-  // const theme = useTheme();
   const preferredColorMode = useMemo(
     () => ({
       /*
@@ -53,7 +51,6 @@ export default function ColorMode({ previousMode, children }) {
           }
           return 'light';
         });
-        localStorage.setItem('tr_color_mode', mode === 'light' ? 'dark' : 'light');
       },
       mode,
     }),
@@ -61,13 +58,11 @@ export default function ColorMode({ previousMode, children }) {
   );
 
   /*
-    TODO: Need a way to properly persist prevState on mode
-    This is mostly good, but only works if a page is navigated
-    before toggling again. Otherwise, only the 2nd toggle doesn't
-    transition properly.
+    This works by a `previousMode` state, set in App.jsx.
    */
   const shouldPlayTransition = mode === previousMode;
   const themeContext = useMemo(() => makeTheme({ mode, shouldPlayTransition }), [mode]);
+
   return (
     <ColorModeContext.Provider value={preferredColorMode}>
       <ThemeProvider theme={themeContext}>
