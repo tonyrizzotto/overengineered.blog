@@ -21,7 +21,7 @@ const makeTheme = ({ mode, shouldPlayTransition }) => createTheme({
   },
   transitions: {
     custom: {
-      colorMode: 'background 0.3s linear',
+      colorMode: 'all .5s ease-out',
     },
   },
   components: {
@@ -29,7 +29,7 @@ const makeTheme = ({ mode, shouldPlayTransition }) => createTheme({
       styleOverrides: {
         ...(shouldPlayTransition && {
           body: {
-            transition: 'background 0.3s linear',
+            transition: 'background .5s ease-out, color .3s linear',
           },
         }),
       },

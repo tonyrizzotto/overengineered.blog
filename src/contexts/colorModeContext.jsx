@@ -25,17 +25,16 @@ export function getPreferredColorMode() {
 
   if (typeof localStorage !== 'undefined') {
     colorMode = localStorage.getItem('tr_color_mode');
-  } else if (this.matchMedia('(prefers-color-scheme: dark)').matches()) {
-    colorMode = 'dark';
-  } else {
-    colorMode = 'light';
   }
 
+  if (colorMode === null) {
+    return 'dark';
+  }
   return colorMode;
 }
 
 // eslint-disable-next-line react/prop-types
-export default function ColorMode({ previousMode, children }) {
+export default function ColorMode({ play, setPlay, children }) {
   const [mode, setMode] = useState(getPreferredColorMode());
 
   const preferredColorMode = useMemo(
@@ -45,7 +44,9 @@ export default function ColorMode({ previousMode, children }) {
       */
       toggleColorMode: () => {
         setMode((prevMode) => {
+          setPlay(true);
           localStorage.setItem('tr_prev_color_mode', prevMode);
+          localStorage.setItem('tr_color_mode', prevMode === 'light' ? 'dark' : 'light');
           if (prevMode === 'light') {
             return 'dark';
           }
@@ -58,10 +59,11 @@ export default function ColorMode({ previousMode, children }) {
   );
 
   /*
-    This works by a `previousMode` state, set in App.jsx.
+    Transitions happen by a temporary state change on the color toggle.
+    The toggle sets `play` to `true`, plays the animation, then after the page loads again
+    play is set to `false`. Unless the toggle is selected, the transition will not play.
    */
-  const shouldPlayTransition = mode === previousMode;
-  const themeContext = useMemo(() => makeTheme({ mode, shouldPlayTransition }), [mode]);
+  const themeContext = useMemo(() => makeTheme({ mode, shouldPlayTransition: play }), [mode]);
 
   return (
     <ColorModeContext.Provider value={preferredColorMode}>
