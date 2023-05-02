@@ -24,11 +24,11 @@ export function getPreferredColorMode() {
   let colorMode;
 
   if (typeof localStorage !== 'undefined') {
-    colorMode = localStorage.getItem('tr_color_mode');
+    colorMode = localStorage.getItem('mode');
   }
 
   if (colorMode === null) {
-    return 'dark';
+    return 'dark'; // our preferred setting
   }
   return colorMode;
 }
@@ -45,8 +45,8 @@ export default function ColorMode({ play, setPlay, children }) {
       toggleColorMode: () => {
         setMode((prevMode) => {
           setPlay(true);
-          localStorage.setItem('tr_prev_color_mode', prevMode);
-          localStorage.setItem('tr_color_mode', prevMode === 'light' ? 'dark' : 'light');
+          // localStorage.setItem('tr_prev_color_mode', prevMode);
+          localStorage.setItem('mode', prevMode === 'light' ? 'dark' : 'light');
           if (prevMode === 'light') {
             return 'dark';
           }
