@@ -162,7 +162,12 @@ function ResponsiveAppBar() {
                 key={page.name}
                 onClick={handleCloseNavMenu}
                 href={page.url}
-                sx={{ my: 2, color: theme.palette.text.primary, display: 'block' }}
+                sx={{
+                  my: 2,
+                  color: theme.palette.text.primary,
+                  display: 'block',
+                  fontWeight: 800,
+                }}
               >
                 {page.name}
               </Button>

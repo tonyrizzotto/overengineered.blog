@@ -4,7 +4,7 @@ import { styled } from '@mui/system';
 const PageWrapper = styled(Box, {
   shouldForwardProp: (props) => props,
 })(() => ({
-  margin: '20px 0',
+  margin: '2rem 0',
 }));
 
 export default PageWrapper;
