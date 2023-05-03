@@ -30,43 +30,44 @@ export default function Home() {
   return (
     <PageWrapper>
       {!loading && (
-        <Box>
-          <Stack>
-            <Typography variant="h1" color={palette.background.accent}>
-              Completely over-engineered
-            </Typography>
-            <Box
-              paddingTop="1rem"
-              lineHeight="10px"
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column-reverse',
+            alignItems: 'center',
+            justifyContent: 'center',
+            [breakpoints.up('md')]: {
+              display: 'grid',
+              gridTemplateColumns: '80% 20%',
+            },
+          }}
+        >
+          <Stack marginRight="1rem">
+            <Typography
+              variant="h1"
+              color={palette.background.accent}
               sx={{
-                width: '90%',
-                [breakpoints.up('md')]: {
-                  maxWidth: '70%',
-                },
                 [breakpoints.up('lg')]: {
-                  maxWidth: '880px',
+                  wordSpacing: '100vw',
                 },
               }}
             >
-              <Typography variant="h3">
-                It would be reasonable to lack works justifying the technology used
-                to build this website, alas... here it is.
-              </Typography>
+              Over Engineered Ideas
+            </Typography>
+            <Box paddingTop="1rem" lineHeight="10px">
+              <Typography variant="h4">Much technology in small doses</Typography>
               <Box paddingTop="1rem">
                 <Typography variant="h6">
-                  My main interest in life is understanding how things work and using that knowledge
-                  to make things better. My main goal here is to share ideas with words and learn
-                  through code... or is it learn with words and share ideas with code?
-                  Maybe a little bit of both...
+                  Understanding how things work and using that knowledge to make things better.
+
+                  Lets share ideas with words and learn through code...
+                  or is it learn with words and share ideas with code? Maybe a little bit of both...
                 </Typography>
               </Box>
+              <Button onClick={() => navigate('/blog')}>Navigate to Blog</Button>
             </Box>
           </Stack>
-          <Button
-            onClick={() => navigate('/blog')}
-          >
-            Navigate to Blog
-          </Button>
+          <Box backgroundColor={palette.background.accent} width="100%" height="100%" />
         </Box>
       )}
     </PageWrapper>

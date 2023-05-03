@@ -34,41 +34,39 @@ const makeTheme = ({ mode, shouldPlayTransition }) => createTheme({
     },
   },
   typography: {
+    fontFamily: 'Open Sans, sans-serif',
+    altFonts: {
+      code: 'Source Code Pro, sans-serif',
+    },
     h1: {
-      fontSize: '1.8rem',
+      fontSize: '5.9vw',
       [breakpoints.up('md')]: {
-        fontSize: '2.4rem',
+        fontSize: '5.5vw',
       },
-      [breakpoints.up('lg')]: {
-        fontSize: '3.5rem',
+      [breakpoints.up('md')]: {
+        fontSize: '6.2vw',
       },
     },
-    h3: {
-      fontSize: '1.3rem',
+    h4: {
+      fontSize: '3.6vw',
       [breakpoints.up('md')]: {
-        fontSize: '1.4rem',
+        fontSize: '3.0vw',
       },
       [breakpoints.up('lg')]: {
-        fontSize: '2rem',
+        fontSize: '2.6vw',
       },
     },
     h6: {
-      fontSize: '1rem',
+      fontSize: '2.2vw',
       [breakpoints.up('md')]: {
-        fontSize: '1.2rem',
+        fontSize: '1.7vw',
       },
       [breakpoints.up('lg')]: {
-        fontSize: '1.4rem',
+        fontSize: '1.5vw',
       },
     },
     p: {
       fontSize: '16px',
-      // [breakpoints.up('md')]: {
-      //   fontSize: '1.2rem',
-      // },
-      // [breakpoints.up('lg')]: {
-      //   fontSize: '1.4rem',
-      // },
     },
   },
   components: {
