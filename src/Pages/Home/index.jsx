@@ -47,7 +47,7 @@ export default function Home() {
               variant="h1"
               color={palette.background.accent}
               sx={{
-                [breakpoints.up('lg')]: {
+                [breakpoints.up('md')]: {
                   wordSpacing: '100vw',
                 },
               }}
