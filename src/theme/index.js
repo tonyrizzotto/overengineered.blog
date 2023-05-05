@@ -39,9 +39,9 @@ const makeTheme = ({ mode, shouldPlayTransition }) => createTheme({
       code: 'Source Code Pro, sans-serif',
     },
     h1: {
-      fontSize: '5.9vw',
+      fontSize: '6.9vw',
       [breakpoints.up('md')]: {
-        fontSize: '5.5vw',
+        fontSize: '5.9vw',
       },
       [breakpoints.up('md')]: {
         fontSize: '6.2vw',

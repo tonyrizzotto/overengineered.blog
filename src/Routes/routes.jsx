@@ -1,5 +1,4 @@
 import Blog from '../pages/Blog';
-import Contact from '../pages/Contact';
 import Home from '../pages/Home';
 import First from '../pages/Blog/posts/2023-04-22.mdx';
 import ErrorBoundary from '../components/ErrorBoundary';
@@ -23,10 +22,6 @@ const routeConfig = [
   {
     path: 'blog',
     element: <Blog />,
-  },
-  {
-    path: 'contact',
-    element: <Contact />,
   },
   {
     path: '/blog/2023-04-22',

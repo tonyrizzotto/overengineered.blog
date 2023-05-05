@@ -4,10 +4,10 @@ import { useQuery } from 'graphql-hooks';
 import {
   Box,
   Button,
-  Stack,
   Typography,
 } from '@mui/material';
 import PageWrapper from '../../components/PageWrapper';
+// import { PixelRain } from '../../components/PixelRain';
 
 const HELLO_QUERY = `
   query Hello($name: String!) {
@@ -29,47 +29,45 @@ export default function Home() {
 
   return (
     <PageWrapper>
-      {!loading && (
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column-reverse',
-            alignItems: 'center',
-            justifyContent: 'center',
-            [breakpoints.up('md')]: {
+      <Box>
+        {!loading && (
+          <Box
+            sx={{
               display: 'grid',
-              gridTemplateColumns: '80% 20%',
-            },
-          }}
-        >
-          <Stack marginRight="1rem">
-            <Typography
-              variant="h1"
-              color={palette.background.accent}
-              sx={{
-                [breakpoints.up('md')]: {
-                  wordSpacing: '100vw',
-                },
-              }}
-            >
-              Over Engineered Ideas
-            </Typography>
-            <Box paddingTop="1rem" lineHeight="10px">
-              <Typography variant="h4">Much technology in small doses</Typography>
-              <Box paddingTop="1rem">
-                <Typography variant="h6">
-                  Understanding how things work and using that knowledge to make things better.
-
-                  Lets share ideas with words and learn through code...
-                  or is it learn with words and share ideas with code? Maybe a little bit of both...
+              [breakpoints.up('md')]: {
+                gridTemplateColumns: '80% 20%',
+              },
+            }}
+          >
+            <Box margin="0 1rem">
+              <Box>
+                <Typography
+                  variant="h1"
+                  color={palette.background.accent}
+                  sx={{
+                    [breakpoints.up('md')]: {
+                      wordSpacing: '100vw',
+                    },
+                  }}
+                >
+                  Over Engineered Ideas
                 </Typography>
+                <Box paddingTop="1rem" lineHeight="10px">
+                  <Typography variant="h4">Big ideas in small doses</Typography>
+                  <Box paddingTop="1rem">
+                    <Typography variant="h6">
+                      Lets share ideas with words and learn through code...
+                      or is it learn with words and share ideas with code?
+                      Maybe a little bit of both...
+                    </Typography>
+                  </Box>
+                  <Button onClick={() => navigate('/blog')}>Navigate to Blog</Button>
+                </Box>
               </Box>
-              <Button onClick={() => navigate('/blog')}>Navigate to Blog</Button>
             </Box>
-          </Stack>
-          <Box backgroundColor={palette.background.accent} width="100%" height="100%" />
-        </Box>
-      )}
+          </Box>
+        )}
+      </Box>
     </PageWrapper>
   );
 }

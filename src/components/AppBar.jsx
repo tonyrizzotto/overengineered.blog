@@ -27,7 +27,7 @@ const pages = [
   },
   {
     name: 'Contact',
-    url: '/contact',
+    url: 'https://www.linkedin.com/in/tony-rizzotto/',
   },
 ];
 
@@ -113,6 +113,7 @@ function ResponsiveAppBar() {
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
                   <Link
                     href={page.url}
+                    target={page.name === 'Contact' ? '_blank' : ''}
                     sx={{
                       textDecoration: 'none',
                       color: 'inherit',
@@ -152,6 +153,7 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page.name}
+                target={page.name === 'Contact' ? '_blank' : ''}
                 onClick={handleCloseNavMenu}
                 href={page.url}
                 sx={{
