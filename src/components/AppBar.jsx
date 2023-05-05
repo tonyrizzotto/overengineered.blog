@@ -48,10 +48,9 @@ function ResponsiveAppBar() {
   return (
     <AppBar
       position="static"
-      sx={{
-        borderRadius: '0 0 8px 8px',
-        backgroundColor: theme.palette.background.header,
-        transition: theme.transitions.custom.colorMode,
+      style={{
+        background: 'transparent',
+        boxShadow: 'none',
       }}
     >
       <Container maxWidth="xl">
@@ -69,14 +68,14 @@ function ResponsiveAppBar() {
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
+              // fontFamily: 'monospace',
+              fontWeight: 900,
               letterSpacing: '.3rem',
               color: theme.palette.text.primary,
               textDecoration: 'none',
             }}
           >
-            TR
+            OEI
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -140,13 +139,12 @@ function ResponsiveAppBar() {
               display: { xs: 'flex', md: 'none' },
               color: theme.palette.text.primary,
               flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
+              fontWeight: 900,
               letterSpacing: '.3rem',
               textDecoration: 'none',
             }}
           >
-            TR
+            OEI
           </Typography>
           <Box sx={{ flexGrow: 1, justifyContent: 'right', display: { xs: 'none', md: 'flex' } }}>
             {/* Desktop */}
@@ -161,6 +159,7 @@ function ResponsiveAppBar() {
                   color: theme.palette.text.primary,
                   display: 'block',
                   fontWeight: 800,
+                  fontSize: '16px',
                 }}
               >
                 {page.name}

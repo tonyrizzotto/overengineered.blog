@@ -3,10 +3,10 @@ import { useTheme } from '@mui/material/node/styles';
 import { useQuery } from 'graphql-hooks';
 import {
   Box,
-  Button,
   Typography,
 } from '@mui/material';
 import PageWrapper from '../../components/PageWrapper';
+import GiantPillButton from '../../components/GiantPillButton';
 
 const HELLO_QUERY = `
   query Hello($name: String!) {
@@ -60,7 +60,7 @@ export default function Home() {
                       Maybe a little bit of both...
                     </Typography>
                   </Box>
-                  <Button onClick={() => navigate('/blog')}>Navigate to Blog</Button>
+                  <GiantPillButton onClick={() => navigate('/blog')} />
                 </Box>
               </Box>
             </Box>

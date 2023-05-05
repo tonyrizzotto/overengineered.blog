@@ -80,6 +80,10 @@ export function PixelRain() {
 
       rainToRender.push({ offset, key, rain });
       setRainToRender([...rainToRender]);
+    } else {
+      // temporary till I figure out how to make the pixels fade on page change
+      // without the state remaining in the whichever page is navigated to.
+      setRainToRender([]);
     }
   }, 50);
 
