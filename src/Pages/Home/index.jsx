@@ -7,7 +7,6 @@ import {
   Typography,
 } from '@mui/material';
 import PageWrapper from '../../components/PageWrapper';
-// import { PixelRain } from '../../components/PixelRain';
 
 const HELLO_QUERY = `
   query Hello($name: String!) {

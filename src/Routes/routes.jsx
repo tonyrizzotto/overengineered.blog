@@ -1,7 +1,7 @@
 import Blog from '../pages/Blog';
 import Home from '../pages/Home';
-import First from '../pages/Blog/posts/2023-04-22.mdx';
 import ErrorBoundary from '../components/ErrorBoundary';
+import blogMap from '../pages/Blog/blogmap';
 
 /*
   https://reactrouter.com/en/main/routers/create-browser-router#createbrowserrouter
@@ -13,6 +13,7 @@ import ErrorBoundary from '../components/ErrorBoundary';
     },
   ],
  */
+
 const routeConfig = [
   {
     path: '/',
@@ -23,10 +24,8 @@ const routeConfig = [
     path: 'blog',
     element: <Blog />,
   },
-  {
-    path: '/blog/2023-04-22',
-    element: <First />,
-  },
+
 ];
 
+blogMap.forEach((post) => routeConfig.push(post));
 export default routeConfig;

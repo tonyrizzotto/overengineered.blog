@@ -14,13 +14,36 @@ export const PixelRainContainer = styled('div', {
   position: 'relative',
   '@keyframes falldown': {
     from: {
-      left: 500,
+      left: 400,
     },
     to: {
-      left: -200,
+      left: -300,
     },
   },
+  '@keyframes fade-out': {
+    '0%': {
+      opacity: 1,
+    },
+    '25%': {
+      opacity: 0.7,
+    },
+    '75%': {
+      opacity: Math.floor(Math.random()),
+    },
+  },
+  top: `${offset}px`,
+  animation: 'falldown 6s ease-out, fade-out 4s ease-out',
   [theme.breakpoints.up('md')]: {
+    '@keyframes falldown': {
+      from: {
+        left: 700,
+      },
+      to: {
+        left: -900,
+      },
+    },
+  },
+  [theme.breakpoints.up('lg')]: {
     '@keyframes falldown': {
       from: {
         left: 1000,
@@ -30,19 +53,7 @@ export const PixelRainContainer = styled('div', {
       },
     },
   },
-  '@keyframes fade-out': {
-    '0%': {
-      opacity: 0,
-    },
-    '25%': {
-      opacity: 0.7,
-    },
-    '75%': {
-      opacity: 0,
-    },
-  },
-  top: `${offset}px`,
-  animation: 'falldown 6s ease-out, fade-out 3s ease-out',
+
 }));
 
 export const RainDrop = styled('div')(({ theme }) => ({
@@ -54,17 +65,22 @@ export const RainDrop = styled('div')(({ theme }) => ({
 export function PixelRain() {
   const [rainToRender, setRainToRender] = useState([{ key: 0, rain: '', offset: 0 }]);
 
+  // eslint-disable-next-line no-undef
+  const shouldPlayEffect = window.location.pathname === '/';
+
   useInterval(() => {
-    if (rainToRender.length > 45) {
-      rainToRender.shift();
+    if (shouldPlayEffect) {
+      if (rainToRender.length > 45) {
+        rainToRender.shift();
+      }
+
+      const offset = Math.floor(Math.random() * 1000);
+      const key = Math.floor(Math.random() * 10000000);
+      const rain = <RainDrop />;
+
+      rainToRender.push({ offset, key, rain });
+      setRainToRender([...rainToRender]);
     }
-
-    const offset = Math.floor(Math.random() * 1000);
-    const key = Math.floor(Math.random() * 100000);
-    const rain = <RainDrop />;
-
-    rainToRender.push({ offset, key, rain });
-    setRainToRender([...rainToRender]);
   }, 50);
 
   return (
