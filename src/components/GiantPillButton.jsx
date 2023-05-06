@@ -5,22 +5,13 @@ import { styled } from '@mui/material/node/styles';
 const GiantButton = styled(Button, {
   shouldForwardProp: (props) => props,
 })(() => ({
-  padding: '1rem 3rem',
-  borderRadius: '50px',
-  fontSize: '25px',
-  '&:hover': {
-    borderColor: '#0062cc',
-    color: 'white',
-    boxShadow: 'none',
-    transition: '.7s ease-in',
-  },
-  '&:active': {
-    boxShadow: 'none',
-    borderColor: '#005cbf',
-  },
-  '&:focus': {
-    boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-  },
+  position: 'relative',
+  color: 'white',
+  width: '256px',
+  height: '64px',
+  lineHeight: '64px',
+  transition: 'all 0.9s',
+  border: '1px solid rgba(255, 255, 255, 0.5)',
 }));
 
 const ButtonBox = styled(Box)(() => ({
