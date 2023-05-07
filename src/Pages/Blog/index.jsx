@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { Button, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import PageWrapper from '../../components/PageWrapper';
 import BlogWrapper from '../../components/BlogWrapper';
+import TitleButton from './TitleButton';
 import blogMap from './blogmap';
 
 export default function Blog() {
@@ -9,7 +10,7 @@ export default function Blog() {
 
   const posts = blogMap.map(({ path, metadata }) => (
     <>
-      <Button onClick={() => navigate(path)}>{metadata.title}</Button>
+      <TitleButton onClick={() => navigate(path)}>{metadata.title}</TitleButton>
       <Typography variant="caption">{metadata.subTitle}</Typography>
     </>
   ));
