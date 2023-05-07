@@ -14,6 +14,7 @@ const makeTheme = ({ mode, shouldPlayTransition }) => createTheme({
       },
       text: {
         primary: '#d9d6db',
+        primaryAccent: '#83C120',
       },
     }),
     ...(mode === 'light' && {
@@ -25,6 +26,7 @@ const makeTheme = ({ mode, shouldPlayTransition }) => createTheme({
       },
       text: {
         primary: '#3a3a3a',
+        primaryAccent: '#83C120',
       },
     }),
   },
@@ -79,6 +81,10 @@ const makeTheme = ({ mode, shouldPlayTransition }) => createTheme({
     },
     p: {
       fontSize: '16px',
+    },
+    caption: {
+      fontSize: '16px',
+      fontWeight: 900,
     },
   },
   components: {

@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router-dom';
-import { Typography } from '@mui/material';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { Box, Typography } from '@mui/material';
 import PageWrapper from '../../components/PageWrapper';
 import BlogWrapper from '../../components/BlogWrapper';
 import TitleButton from './TitleButton';
@@ -9,16 +9,21 @@ export default function Blog() {
   const navigate = useNavigate();
 
   const posts = blogMap.map(({ path, metadata }) => (
-    <>
-      <TitleButton onClick={() => navigate(path)}>{metadata.title}</TitleButton>
-      <Typography variant="caption">{metadata.subTitle}</Typography>
-    </>
+    <Box marginBottom="3rem" key={metadata.title}>
+      <TitleButton variant="h4" onClick={() => navigate(path)}>{metadata.title}</TitleButton>
+      <Box display="inline-block">
+        <Typography variant="caption">{metadata.date}</Typography>
+        <Typography variant="caption" paddingLeft="1rem" sx={{ wordSpacing: '4px' }}>{metadata.length}</Typography>
+      </Box>
+      <Typography variant="subtitle1">{metadata.subTitle}</Typography>
+    </Box>
   ));
 
   return (
     <PageWrapper>
       <BlogWrapper>
         {posts}
+        <Outlet />
       </BlogWrapper>
     </PageWrapper>
   );

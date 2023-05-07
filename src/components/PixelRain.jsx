@@ -69,7 +69,7 @@ export function PixelRain() {
   const [rainToRender, setRainToRender] = useState([{ key: 0, rain: '', offset: 0 }]);
 
   // eslint-disable-next-line no-undef
-  const shouldPlayEffect = window.location.pathname === '/';
+  const shouldPlayEffect = ['/', '/blog'].includes(window.location.pathname);
 
   useInterval(() => {
     if (shouldPlayEffect) {

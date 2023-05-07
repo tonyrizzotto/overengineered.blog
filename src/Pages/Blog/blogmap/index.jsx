@@ -4,20 +4,22 @@ const blogMap = [
   {
     metadata: {
       title: 'Amazon Gives No Breaks to Serverless',
-      subTitle: '..but then again why should they???',
+      subTitle: 'Serverless is dead. Long live King Monolith... right?',
       date: 'May 7th, 2023',
+      length: '🔥 🔥',
     },
     element: <Posts.NumberTwo />,
-    path: '/blog/no-breaks-from-amazon',
+    path: 'no-breaks-from-amazon',
   },
   {
     metadata: {
       title: 'Defining "Full-Stack"',
-      subTitle: 'A totally honest view of what Full-Stack is in 2023.',
+      subTitle: 'This is no longer your daddys full-stack.',
       date: 'May 7th, 2023',
+      length: '🔥 🔥 🔥',
     },
     element: <Posts.NumberOne />,
-    path: '/blog/the-truth-about-full-stack',
+    path: 'the-truth-about-full-stack',
   },
 ];
 
