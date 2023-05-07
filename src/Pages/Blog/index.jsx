@@ -1,27 +1,24 @@
 import { useNavigate } from 'react-router-dom';
-import { Box, Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import PageWrapper from '../../components/PageWrapper';
+import BlogWrapper from '../../components/BlogWrapper';
 import blogMap from './blogmap';
 
 export default function Blog() {
   const navigate = useNavigate();
 
-  const posts = blogMap.map((post) => (
+  const posts = blogMap.map(({ path, metadata }) => (
     <>
-      <Box>
-        {post.title}
-      </Box>
-      <Button
-        onClick={() => navigate(post.path)}
-      >
-        View
-      </Button>
+      <Button onClick={() => navigate(path)}>{metadata.title}</Button>
+      <Typography variant="caption">{metadata.subTitle}</Typography>
     </>
   ));
 
   return (
     <PageWrapper>
-      {posts}
+      <BlogWrapper>
+        {posts}
+      </BlogWrapper>
     </PageWrapper>
   );
 }

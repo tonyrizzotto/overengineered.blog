@@ -10,10 +10,9 @@ import AppBar from './components/AppBar';
 import { useSetEnvVarContext } from './contexts/envVarContext';
 import Router from './Routes';
 import { ENV_QUERY } from './queries';
-import { PixelRain } from './components/PixelRain';
 
 const cache = createCache({
-  key: 'tonyrizzotto',
+  key: 'overengineered-css',
 });
 
 /*
@@ -50,7 +49,6 @@ export default function App() {
         <CssBaseline enableColorScheme />
         <AppContainer>
           <AppBar />
-          <PixelRain />
           <Router hydrated={hydrated} />
         </AppContainer>
       </ColorMode>

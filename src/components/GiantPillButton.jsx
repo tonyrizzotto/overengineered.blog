@@ -12,6 +12,7 @@ const GiantButton = styled(Button, {
   lineHeight: '64px',
   transition: 'all 0.9s',
   border: '1px solid rgba(255, 255, 255, 0.5)',
+  cursor: 'pointer',
 }));
 
 const ButtonBox = styled(Box)(() => ({

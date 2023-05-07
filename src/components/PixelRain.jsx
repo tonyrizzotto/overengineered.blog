@@ -22,6 +22,9 @@ export const PixelRainContainer = styled('div', {
   },
   '@keyframes fade-out': {
     '0%': {
+      opacity: 0,
+    },
+    '10%': {
       opacity: 1,
     },
     '25%': {

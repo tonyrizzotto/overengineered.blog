@@ -47,17 +47,29 @@ const makeTheme = ({ mode, shouldPlayTransition }) => createTheme({
         fontSize: '6.2vw',
       },
     },
-    h4: {
+    h3: {
       fontSize: '3.6vw',
       [breakpoints.up('md')]: {
-        fontSize: '3.0vw',
+        fontSize: '3.3vw',
       },
       [breakpoints.up('lg')]: {
         fontSize: '2.6vw',
       },
     },
+    h4: {
+      fontSize: '3.6vw',
+      [breakpoints.up('md')]: {
+        fontSize: '3vw',
+      },
+      [breakpoints.up('lg')]: {
+        fontSize: '2.2vw',
+      },
+      [breakpoints.up('xl')]: {
+        fontSize: '2vw',
+      },
+    },
     h6: {
-      fontSize: '2.2vw',
+      fontSize: '2.8vw',
       [breakpoints.up('md')]: {
         fontSize: '1.7vw',
       },
