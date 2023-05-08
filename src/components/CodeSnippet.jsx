@@ -10,6 +10,7 @@ const CodeSnippet = styled(Box, {
   color: palette.text.codeSnippet,
   borderRadius: '18px',
   boxShadow: custom.shadows.codeSnippet,
+  zIndex: 100,
 }));
 
 export default CodeSnippet;

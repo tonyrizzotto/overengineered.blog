@@ -68,7 +68,7 @@ export const PixelRainContainer = styled('div', {
       },
     },
   },
-
+  zIndex: -1,
 }));
 
 export const RainDrop = styled('div')(({ theme }) => ({

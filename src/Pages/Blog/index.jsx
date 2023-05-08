@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Box, Button, Typography } from '@mui/material';
+import { useFunContext } from '../../contexts/funContext';
 import PageWrapper from '../../components/PageWrapper';
 import BlogWrapper from '../../components/BlogWrapper';
 import TitleButton from './TitleButton';
@@ -10,11 +11,13 @@ import blogMap from './blogmap';
 
 export default function Blog() {
   const [showBlogList, setShowBlogList] = useState(true);
+  const { setFun } = useFunContext();
   const navigate = useNavigate();
 
   const isAtBlogHome = window.location.pathname === '/blog';
   const handleTitleClick = (destination) => {
     setShowBlogList((prevState) => !prevState);
+    setFun(false);
     navigate(destination);
   };
 
