@@ -1,0 +1,153 @@
+import { Box, Divider, Typography } from '@mui/material';
+import CodeSnippet from '../components/CodeSnippet';
+
+<Typography variant="h1" style={{ fontSize: '2.2rem' }}>
+The Dangers of Magic
+<Typography>by Tony Rizzotto</Typography>
+</Typography>
+
+<Typography variant="p">
+Software engineering is not exactly a science (regardless of what some might say), but it isn't exactly a breeze either, right? 
+
+For sure we can **all** agree it is not a walk in the park - depending on your path, the profession can be litered with landmines - and even if you knew where to walk, there always remains the preverbial 'rake' that has you seeing stars and brings you right back down to earth.
+
+Not that log ago, I walked into what I thought was an **absolute** rake. It was something that countless other engineers have probably looked over and never once fliched. Something so auspicious that it wouldn't raise an eyebrow even if you stared at it long enough to see the word backwards. 
+
+Here, lies the dangers of magic.
+</Typography>
+
+<br/>
+<Divider />
+<Typography variant="h5" fontWeight="bold">
+The Classic Case of Magic
+</Typography>
+
+Consider this block of code in a typical Django API View in `Python`:
+<CodeSnippet>
+```
+def patch(self, request):
+  serializer = self.serialize(data=request.data)  
+  try:
+      account = self.get_object()
+      account.update(serializer.valid_data)
+  except Exception as e: 
+      Response(status=400, data={'error': e.message})
+```
+
+\// This is actually fairly standard Django, lets see what's happening.
+</CodeSnippet>
+
+An HTTP `PATCH` endpoint is called with a unique identifer and a request payload.
+
+The payload is then serialized to JSON, we fetch an account object, then throw the data into the `.update()` method. Extremly simple stuff in less than 10 lines of code!
+
+At this point we can call it a day, right?
+<br/>
+<Divider />
+<br/>
+<Typography variant="h5" fontWeight="bold">
+The Problem
+</Typography>
+
+As I said before, this is extremely auspicious code. Even the most seasoned engineer should not be blamed for over-looking <i>any</i>
+potential issue with this work, yet there is a massive problem. Have you found it yet?
+
+In `Python`, there exists a concept of 'magic methods', ones that will run if appended with double-underscores: like `__init__` or `__str__`, etc. If you've worked with `Python` before you've definitely seen these. These magic methods, or Dunder Methods, are not supposed to be called by you, but rather by some other action in the code.
+
+If you haven't already guess it, the here lies in the `.update()`, which can be defined as one of [Djangos custom model methods](https://docs.djangoproject.com/en/4.2/howto/custom-model-fields/#how-to-create-custom-model-fields).
+This is something I like to call 'Django Magic'.  
+
+In this particular made up case, `.update()` is wildly unassuming, but houses the potential for extreme chaos. Let's consider the following.
+
+<CodeSnippet>
+```
+def update(self, data):
+    if 'first_name' in data:
+        update_account_settings(data)
+    if 'age' in data:
+        if 'age' < 16:
+            restriction_notification_update(data)
+        else:
+            update_account_settings(data)
+    if 'email' in data:
+        update_account_preferences(date)
+
+    return true
+```
+</CodeSnippet>
+
+Depending on who you ask, the problem could be a few things:
+
+- Naming things are hard. `.update` is a horrible name for a custom method.
+- There are no code comments.
+- The so called 'magic method' calls other methods, sometimes more than once. This is poor design.
+- It is unclear what in the account is actually getting updated.
+
+These are all valid points and all correct, but I would wager just one more extremely important
+point:
+- This method requires 'institutional knowledge'
+
+<br />
+<Divider />
+
+<Typography variant="h5" fontWeight="bold">
+Institutional Knowledge: <i>The Ultimate [COF](https://www.sciencedirect.com/topics/engineering/coefficient-of-friction)</i> 
+</Typography>
+
+<CodeSnippet>
+Institutional knowledge is the sum of information a company and its employees possess. This can include the expertise, policies, data, skillsets, techniques, know-how, processes, values, and experiences that cover the organization's entire history or are brought to the institution by new hires.
+</CodeSnippet>
+
+The biggest problem in a large, active codebase is how much knowledge and effort must go into it to learning what's going on. Even when you do have an idea of the "big picture", do you really understand all you need to know?
+
+In our case here, we do not know what `.update()` is, but our instincts can make some fairly resonable predictions: those predictions would have almost certainly been wrong. 
+
+The methods contained within the `.update()` call are also a mystery. We have no idea what is contained within those, it is likely the even nest other function calls themselves. If left unchecked, this pattern can lead to far more dangerous issues like [code coupling](https://blog.ndepend.com/programming-coupling/), which will be a topic for another day.
+
+For most start-up companies, the story is essentially the same: A developer has to get X feature out by X date. To do this, they have to take shortcuts. This leads to something we all know, which is that short-cuts lead to the ever-depressing: `technical debt` and massive technical debt leads to overwhelmingly deep institutional knowledge.
+
+So what can we do to better avoid this?
+
+<br />
+<Divider />
+
+
+<Typography variant="h5" fontWeight="bold">
+Squashing Institutional Knowledge
+</Typography>
+
+Mature codebases don't get mature by just being around for many years. They get there through technical dilagence, clean and purposeful code, and meaningful documentation. 
+
+Irregardless of your architecture of choice: monolith, microservice, or something in-between, there are some very simple practices that you can institute immediatley to improve your work and the future impact it will have the next time this code is revisited.
+
+<Typography variant="" fontWeight="bold">
+Code-as-documentation is extremely powerful
+</Typography>
+
+There is nothing more appreciated than appropriately named functions and variables, irregardless of your language of choices preferred approach. In most situations, `.update()` will be a bad name for a method, but `.update_account_by_key()` might be something more helpful down the road.
+
+<Typography variant="" fontWeight="bold">
+Drop some comments on that bad boy
+</Typography>
+Don't be too shy to share what you were thinking. Sometimes you're thinking the absolute wrong thing. This is okay! That's what the pull-request is for.
+
+Comments are just as much for the reviewer of your code as they are for the next person who works on it. If you don't see comments, ask for some. If the comments are misleading or unclear, drop a request to refactor. Never compromise on clarity. One missing comment may not be the missing link to the next issue, but having that comment there ensures that it won't be.
+
+<Typography variant="" fontWeight="bold">
+Don't be afraid to afraid to **review** pull requests
+</Typography>
+
+Many developers I've worked with have great instincts, but peer review is something that everyone struggles with. 'Courtesy' reviews do nothing for your 
+businesses long-term success, it's ability to iterate quickly on designs, or potentially you and your teams sanity next week.
+
+No one should take it personally that comments are left or changes are requested. There is no single engineer who is infallible, present company definitely included. Do everyone a favor and ask a question. It will always lead to a better result.
+
+<br />
+<Divider />
+<Typography variant="h5" fontWeight="bold">
+Conclusion
+</Typography>
+
+No engineering team will ever be perfect, but when it comes to developing strong team-dynamics and working procedures, the following in this article is without doubt the best place to start. 
+
+No matter how quickly you need the feature, or how much pressure comes from above, we always take the time to first understand, then implement these best practices. Without an agreeable process, small things like `.update()` can fall through the cracks and you may very well spend <i>many</i> frustrating hours trying to figure out what went wrong.

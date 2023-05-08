@@ -168,7 +168,7 @@ function ResponsiveAppBar() {
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Toggle Fun Mode!">
+              <Tooltip title="Toggle Fun Mode - Alpha v0.0.1">
                 <IconButton sx={{ ml: 5 }} onClick={() => setFun((prevState) => !prevState)}>
                   {fun ? '🎉' : '💤'}
                 </IconButton>

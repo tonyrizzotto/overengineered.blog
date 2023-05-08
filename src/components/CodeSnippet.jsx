@@ -4,7 +4,7 @@ import { styled } from '@mui/system';
 const CodeSnippet = styled(Box, {
   shouldForwardProp: (props) => props,
 })(({ theme: { palette, custom } }) => ({
-  margin: '20px 0',
+  margin: '3rem 0',
   backgroundColor: palette.background.codeSnippet,
   padding: '.5rem 1rem',
   color: palette.text.codeSnippet,

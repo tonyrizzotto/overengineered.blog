@@ -7,22 +7,24 @@ const makeTheme = ({ mode, shouldPlayTransition }) => createTheme({
     mode,
     ...(mode === 'dark' && {
       background: {
-        default: '#091A28',
+        default: 'hsla(207, 63%, 10%, 1)',
         accent: '#01933F',
-        codeSnippet: 'hsla(220, 6%, 87%, 0.90)',
+        codeSnippet: 'hsla(208, 57%, 21%, 0.92)',
+        comment: '#999999',
       },
       text: {
-        codeSnippet: '#3a3a3a',
+        codeSnippet: 'rgba(255, 255, 255, 1)',
         primary: '#d9d6db',
         header: '#01933F',
         primaryAccent: '#83C120',
+        comment: '#999999',
       },
     }),
     ...(mode === 'light' && {
       background: {
         default: '#fff',
         accent: '#696969',
-        codeSnippet: 'hsla(220, 6%, 87%, 0.90)',
+        codeSnippet: 'hsla(220, 6%, 87%, 1)',
       },
       text: {
         codeSnippet: '#3a3a3a',
@@ -40,7 +42,7 @@ const makeTheme = ({ mode, shouldPlayTransition }) => createTheme({
     }),
     ...(mode === 'dark' && {
       shadows: {
-        codeSnippet: 'none',
+        codeSnippet: '0px 8px 9px -5px rgba(0,0,0,0.2),0px 15px 22px 2px rgba(0,0,0,0.14),0px 6px 28px 5px rgba(0,0,0,0.12)',
       },
     }),
   },
