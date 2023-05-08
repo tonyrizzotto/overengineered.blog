@@ -13,7 +13,7 @@ const blogMap = [
   },
   {
     metadata: {
-      title: 'Defining "Full-Stack"',
+      title: 'The Truth About "Full-Stack" Development',
       subTitle: 'This is no longer your daddys full-stack.',
       date: 'May 7th, 2023',
       length: '🔥 🔥 🔥',
