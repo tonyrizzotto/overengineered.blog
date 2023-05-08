@@ -10,7 +10,7 @@ WORKDIR /app
 COPY ["package.json", "package-lock.json*", "./"]
 
 # Install Dependencies based on package-lock
-RUN npm install --include=dev
+RUN npm ci
 
 # Copy everything in our project to the docker file
 COPY ./ ./
