@@ -8,26 +8,26 @@ const makeTheme = ({ mode, shouldPlayTransition }) => createTheme({
     ...(mode === 'dark' && {
       background: {
         default: '#091A28',
-        header: '#212429',
         accent: '#01933F',
         codeSnippet: 'hsla(220, 6%, 87%, 0.90)',
       },
       text: {
         codeSnippet: '#3a3a3a',
         primary: '#d9d6db',
+        header: '#01933F',
         primaryAccent: '#83C120',
       },
     }),
     ...(mode === 'light' && {
       background: {
         default: '#fff',
-        header: '#f3f5f7',
         accent: '#696969',
         codeSnippet: 'hsla(220, 6%, 87%, 0.90)',
       },
       text: {
         codeSnippet: '#3a3a3a',
         primary: '#3a3a3a',
+        header: '#01933F',
         primaryAccent: '#83C120',
       },
     }),

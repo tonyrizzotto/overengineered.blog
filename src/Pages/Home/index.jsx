@@ -16,16 +16,16 @@ export default function Home() {
       <Box sx={{ display: 'grid', [breakpoints.up('md')]: { gridTemplateColumns: '80% 20%' } }}>
         <Box margin="0 1rem">
           <Box>
-            <Typography variant="h1" color={palette.background.accent} sx={{ wordSpacing: '100vw' }}>
+            <Typography variant="h1" color={palette.text.header} sx={{ wordSpacing: '100vw' }}>
               Over Engineered Ideas
             </Typography>
             <Box paddingTop="2rem" lineHeight="10px">
               <Typography variant="h3">Big ideas in small doses</Typography>
               <Box paddingTop="2rem">
                 <Typography variant="h6">
-                  I can not gurantee that this will be the most performant website
+                  I can not gurantee this will be the most performant website
                   you&#39;ve ever visited. What I can guarantee, however, is that I&#39;ve
-                  tried my absolute best to make it not so.
+                  tried my absolute best to make it not so.  👍
                 </Typography>
               </Box>
               <GiantPillButton onClick={() => navigate('/blog')} />

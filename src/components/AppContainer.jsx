@@ -1,8 +1,12 @@
 import { Box } from '@mui/material';
 import { useTheme } from '@mui/material/node/styles';
+import { PixelRain } from './PixelRain';
+import { useFunContext } from '../contexts/funContext';
+
 // eslint-disable-next-line react/prop-types
 export default function AppContainer({ children }) {
   const { breakpoints } = useTheme();
+  const { fun } = useFunContext();
   return (
     <Box
       sx={{
@@ -13,6 +17,7 @@ export default function AppContainer({ children }) {
         },
       }}
     >
+      <PixelRain play={fun} />
       {children}
     </Box>
   );

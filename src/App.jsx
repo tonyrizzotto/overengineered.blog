@@ -5,11 +5,11 @@ import { CacheProvider } from '@emotion/react';
 import { CssBaseline } from '@mui/material';
 import { useQuery } from 'graphql-hooks';
 import ColorMode from './contexts/colorModeContext';
+import FunContextProvider from './contexts/funContext';
 import AppContainer from './components/AppContainer';
 import { useSetEnvVarContext } from './contexts/envVarContext';
 import Router from './Routes';
 import { ENV_QUERY } from './queries';
-// import { PixelRain } from './components/PixelRain';
 
 const cache = createCache({
   key: 'so-over-css',
@@ -24,7 +24,6 @@ export default function App() {
   const [changeTheme, setChangeTheme] = useState(false);
   const { setEnvVars } = useSetEnvVarContext();
   const { loading, data = { getPublicEnvVars: {} } } = useQuery(ENV_QUERY);
-
   // After App has mounted, set hydrated to true
   useEffect(() => {
     setHydrated(true);
@@ -32,7 +31,9 @@ export default function App() {
 
   // Aside from hydration, we only want to rerender the initial app if the ENV Query has finished.
   useEffect(() => {
-    if (!loading) setEnvVars(data.getPublicEnvVars);
+    if (!loading) {
+      setEnvVars(data.getPublicEnvVars);
+    }
   }, [loading]);
 
   /*
@@ -42,15 +43,15 @@ export default function App() {
   if (!hydrated) {
     return null;
   }
-
   return (
     <CacheProvider value={cache}>
       <ColorMode play={changeTheme} setPlay={setChangeTheme}>
-        <CssBaseline enableColorScheme />
-        <AppContainer>
-          {/* <PixelRain /> */}
-          <Router hydrated={hydrated} />
-        </AppContainer>
+        <FunContextProvider>
+          <CssBaseline enableColorScheme />
+          <AppContainer>
+            <Router hydrated={hydrated} />
+          </AppContainer>
+        </FunContextProvider>
       </ColorMode>
     </CacheProvider>
   );

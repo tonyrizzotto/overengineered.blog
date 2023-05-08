@@ -17,6 +17,7 @@ import {
   Tooltip,
   MenuItem,
 } from '@mui/material';
+import { useFunContext } from '../contexts/funContext';
 import { useColorMode } from '../contexts/colorModeContext';
 import rocketLink from '../assets/rocket.svg';
 
@@ -33,6 +34,7 @@ const pages = [
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
+  const { fun, setFun } = useFunContext();
   const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
@@ -165,6 +167,13 @@ function ResponsiveAppBar() {
               ))}
             </Box>
 
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Toggle Fun Mode!">
+                <IconButton sx={{ ml: 5 }} onClick={() => setFun((prevState) => !prevState)}>
+                  {fun ? '🎉' : '💤'}
+                </IconButton>
+              </Tooltip>
+            </Box>
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Toggle Color Mode!">
                 <IconButton sx={{ ml: 5 }} onClick={toggleColorMode}>

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/node/styles';
@@ -15,10 +16,10 @@ export const PixelRainContainer = styled('div', {
   overflow: 'clip',
   '@keyframes falldown': {
     from: {
-      left: 400,
+      left: 240,
     },
     to: {
-      left: -300,
+      left: -900,
     },
   },
   '@keyframes fade-out': {
@@ -36,11 +37,21 @@ export const PixelRainContainer = styled('div', {
     },
   },
   top: `${offset}px`,
-  animation: 'falldown 6s ease-out, fade-out 6s ease-out',
+  animation: 'falldown 4s ease-out, fade-out 4s ease-out',
+  [theme.breakpoints.up('sm')]: {
+    '@keyframes falldown': {
+      from: {
+        left: 450,
+      },
+      to: {
+        left: -900,
+      },
+    },
+  },
   [theme.breakpoints.up('md')]: {
     '@keyframes falldown': {
       from: {
-        left: 700,
+        left: 675,
       },
       to: {
         left: -900,
@@ -66,14 +77,13 @@ export const RainDrop = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.accent,
 }));
 
-export function PixelRain() {
+export function PixelRain({ play }) {
   const [rainToRender, setRainToRender] = useState([{ key: 0, rain: '', offset: 0 }]);
-
   // eslint-disable-next-line no-undef
   const shouldPlayEffect = ['/', '/blog'].includes(window.location.pathname);
 
   useInterval(() => {
-    if (shouldPlayEffect) {
+    if (play && shouldPlayEffect) {
       if (rainToRender.length > 45) {
         rainToRender.shift();
       }
@@ -101,3 +111,7 @@ export function PixelRain() {
     </SuperContainer>
   );
 }
+
+PixelRain.propTypes = {
+  play: PropTypes.bool.isRequired,
+};
