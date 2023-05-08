@@ -26,5 +26,5 @@ ENV PORT=8080
 RUN npm -version
 
 # Start the application
-CMD ["node", "./server"]
+CMD ["node", "./server/index.js"]
 
