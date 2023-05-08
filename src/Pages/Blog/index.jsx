@@ -1,28 +1,56 @@
+/* global window */
+import { useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { Box, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import PageWrapper from '../../components/PageWrapper';
 import BlogWrapper from '../../components/BlogWrapper';
 import TitleButton from './TitleButton';
+import PostContainer from './PostContainer';
 import blogMap from './blogmap';
 
 export default function Blog() {
+  const [showBlogList, setShowBlogList] = useState(true);
   const navigate = useNavigate();
 
+  const isAtBlogHome = window.location.pathname === '/blog';
+  const handleTitleClick = (destination) => {
+    setShowBlogList((prevState) => !prevState);
+    navigate(destination);
+  };
+
+  const handleBackNavigation = () => {
+    setShowBlogList(true);
+    navigate('/blog');
+  };
+
+  /*
+    Iterate through the blog map to make a set of posts
+    TODO: Think about pagination.
+  */
   const posts = blogMap.map(({ path, metadata }) => (
-    <Box marginBottom="3rem" key={metadata.title}>
-      <TitleButton variant="h4" onClick={() => navigate(path)}>{metadata.title}</TitleButton>
+    <Box marginBottom="3rem" key={metadata.title} display="flex" flexDirection="column" gap="5px">
+      <TitleButton variant="h4" onClick={() => handleTitleClick(path)}>{metadata.title}</TitleButton>
       <Box display="inline-block">
         <Typography variant="caption">{metadata.date}</Typography>
         <Typography variant="caption" paddingLeft="1rem" sx={{ wordSpacing: '4px' }}>{metadata.length}</Typography>
       </Box>
-      <Typography variant="subtitle1">{metadata.subTitle}</Typography>
+      <Typography variant="p">{metadata.subTitle}</Typography>
     </Box>
   ));
+
+  useEffect(() => {
+    if (isAtBlogHome) {
+      setShowBlogList(true);
+    } else {
+      setShowBlogList(false);
+    }
+  }, [isAtBlogHome]);
 
   return (
     <PageWrapper>
       <BlogWrapper>
-        {posts}
+        {!isAtBlogHome && (<Button onClick={handleBackNavigation}>Go Back</Button>)}
+        <PostContainer showBlogList={showBlogList}>{posts}</PostContainer>
         <Outlet />
       </BlogWrapper>
     </PageWrapper>

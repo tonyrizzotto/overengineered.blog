@@ -15,7 +15,7 @@ import blogMap from '../pages/Blog/blogmap';
  */
 
 const blogPages = [];
-blogMap.forEach((post) => blogPages.push(post));
+blogMap.forEach(({ element, path }) => blogPages.push({ element, path }));
 
 const routeConfig = [
   {

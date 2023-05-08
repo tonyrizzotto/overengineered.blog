@@ -1,3 +1,4 @@
+/* global window */
 import { useState } from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
 import { useTheme } from '@mui/material/node/styles/index.js';
@@ -13,7 +14,6 @@ import {
   Menu,
   Container,
   Avatar,
-  Button,
   Tooltip,
   MenuItem,
 } from '@mui/material';
@@ -39,9 +39,16 @@ function ResponsiveAppBar() {
     setAnchorElNav(event.currentTarget);
   };
 
-  const handleCloseNavMenu = (destination) => {
+  const handleCloseNavMenu = ({ reason, page, destination }) => {
     setAnchorElNav(null);
-    navigate(destination);
+    if (reason && (reason === 'backdropClick' || reason === 'escapeKeyDown')) {
+      return;
+    }
+    if (page && page === 'Contact') {
+      window.open(destination, '_blank');
+    } else {
+      navigate(destination);
+    }
   };
 
   const theme = useTheme();
@@ -49,33 +56,23 @@ function ResponsiveAppBar() {
 
   return (
     <>
-      <AppBar
-        position="static"
-        style={{
-          background: 'transparent',
-          boxShadow: 'none',
-        }}
-      >
+      <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none' }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Avatar
-              alt="Tony Rizzotto"
-              src={rocketLink}
-              sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
-            />
+            <Avatar alt="Tony Rizzotto" src={rocketLink} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
             <Typography
-              variant="h6"
-              noWrap
-              component="a"
               onClick={() => navigate('/')}
               sx={{
-                mr: 2,
                 display: { xs: 'none', md: 'flex' },
                 cursor: 'pointer',
+                fontSize: '1.5rem',
                 fontWeight: 900,
                 letterSpacing: '.3rem',
                 color: theme.palette.text.primary,
-                textDecoration: 'none',
+                transition: theme.transitions.custom.colorMode,
+                '&:hover': {
+                  color: theme.palette.text.primaryAccent,
+                },
               }}
             >
               OEI
@@ -105,16 +102,18 @@ function ResponsiveAppBar() {
                   horizontal: 'left',
                 }}
                 open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
+                onClose={(_, reason) => handleCloseNavMenu({
+                  reason,
+                })}
                 sx={{
                   display: { xs: 'block', md: 'none' },
                 }}
               >
                 {/* Mobile Menu */}
                 {pages.map((page) => (
-                  <MenuItem key={page.name} onClick={() => handleCloseNavMenu(page.url)}>
+                  <MenuItem key={page.name}>
                     <Typography
-                      target={page.name === 'Contact' ? '_blank' : ''}
+                      onClick={() => handleCloseNavMenu({ page: page.name, destination: page.url })}
                       sx={{
                         textDecoration: 'none',
                         color: 'inherit',
@@ -126,18 +125,12 @@ function ResponsiveAppBar() {
                 ))}
               </Menu>
             </Box>
-            <Avatar
-              alt="Tony Rizzotto"
-              src={rocketLink}
-              sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
-            />
+            <Avatar alt="Tony Rizzotto" src={rocketLink} sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
             <Typography
               variant="h5"
-              noWrap
-              component="a"
-              href="/"
+              onClick={() => navigate('/')}
               sx={{
-                mr: 2,
+                cursor: 'pointer',
                 display: { xs: 'flex', md: 'none' },
                 color: theme.palette.text.primary,
                 flexGrow: 1,
@@ -151,30 +144,30 @@ function ResponsiveAppBar() {
             <Box sx={{ flexGrow: 1, justifyContent: 'right', display: { xs: 'none', md: 'flex' } }}>
               {/* Desktop */}
               {pages.map((page) => (
-                <Button
+                <Typography
                   key={page.name}
                   target={page.name === 'Contact' ? '_blank' : ''}
-                  onClick={() => handleCloseNavMenu(page.url)}
-                  href={page.url}
+                  onClick={() => handleCloseNavMenu({ page: page.name, destination: page.url })}
                   sx={{
-                    my: 2,
+                    margin: '0 1rem',
                     color: theme.palette.text.primary,
-                    display: 'block',
+                    cursor: 'pointer',
                     fontWeight: 800,
-                    fontSize: '16px',
+                    fontSize: '1.5rem',
+                    transition: theme.transitions.custom.colorMode,
+                    '&:hover': {
+                      color: theme.palette.text.primaryAccent,
+                    },
                   }}
                 >
                   {page.name}
-                </Button>
+                </Typography>
               ))}
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Toggle Color Mode!">
-                <IconButton
-                  sx={{ ml: 5 }}
-                  onClick={toggleColorMode}
-                >
+                <IconButton sx={{ ml: 5 }} onClick={toggleColorMode}>
                   {theme?.palette?.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
                 </IconButton>
               </Tooltip>

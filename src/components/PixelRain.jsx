@@ -12,6 +12,7 @@ export const PixelRainContainer = styled('div', {
   shouldForwardProp: (props) => props,
 })(({ theme, offset }) => ({
   position: 'relative',
+  overflow: 'clip',
   '@keyframes falldown': {
     from: {
       left: 400,
@@ -28,14 +29,14 @@ export const PixelRainContainer = styled('div', {
       opacity: 1,
     },
     '25%': {
-      opacity: 0.7,
+      opacity: 0.9,
     },
     '75%': {
       opacity: Math.floor(Math.random()),
     },
   },
   top: `${offset}px`,
-  animation: 'falldown 6s ease-out, fade-out 4s ease-out',
+  animation: 'falldown 6s ease-out, fade-out 6s ease-out',
   [theme.breakpoints.up('md')]: {
     '@keyframes falldown': {
       from: {
@@ -48,11 +49,11 @@ export const PixelRainContainer = styled('div', {
   },
   [theme.breakpoints.up('lg')]: {
     '@keyframes falldown': {
-      from: {
+      '0%': {
         left: 1000,
       },
-      to: {
-        left: -900,
+      '100%': {
+        left: -700,
       },
     },
   },

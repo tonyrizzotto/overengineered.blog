@@ -9,7 +9,7 @@ import AppContainer from './components/AppContainer';
 import { useSetEnvVarContext } from './contexts/envVarContext';
 import Router from './Routes';
 import { ENV_QUERY } from './queries';
-import { PixelRain } from './components/PixelRain';
+// import { PixelRain } from './components/PixelRain';
 
 const cache = createCache({
   key: 'so-over-css',
@@ -48,7 +48,7 @@ export default function App() {
       <ColorMode play={changeTheme} setPlay={setChangeTheme}>
         <CssBaseline enableColorScheme />
         <AppContainer>
-          <PixelRain />
+          {/* <PixelRain /> */}
           <Router hydrated={hydrated} />
         </AppContainer>
       </ColorMode>

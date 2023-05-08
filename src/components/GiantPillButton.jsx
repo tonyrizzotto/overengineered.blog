@@ -6,12 +6,13 @@ const GiantButton = styled(Button, {
   shouldForwardProp: (props) => props,
 })(() => ({
   position: 'relative',
-  color: 'white',
-  width: '256px',
+  padding: '0 1rem',
+  width: 'fit-content',
   height: '64px',
+  fontSize: '1rem',
   lineHeight: '64px',
   transition: 'all 0.9s',
-  border: '1px solid rgba(255, 255, 255, 0.5)',
+  border: '1px solid',
   cursor: 'pointer',
 }));
 
@@ -24,7 +25,7 @@ function GiantPillButton({ onClick }) {
   return (
     <ButtonBox>
       <GiantButton onClick={() => onClick()}>
-        Navigate to Blog Land!
+        Come see what&#39;s on my mind.
       </GiantButton>
     </ButtonBox>
   );

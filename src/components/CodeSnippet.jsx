@@ -3,13 +3,13 @@ import { styled } from '@mui/system';
 
 const CodeSnippet = styled(Box, {
   shouldForwardProp: (props) => props,
-})(({ theme: { palette, shadows } }) => ({
+})(({ theme: { palette, custom } }) => ({
   margin: '20px 0',
   backgroundColor: palette.background.codeSnippet,
   padding: '.5rem 1rem',
-  color: palette.text.primary,
+  color: palette.text.codeSnippet,
   borderRadius: '18px',
-  boxShadow: shadows[15],
+  boxShadow: custom.shadows.codeSnippet,
 }));
 
 export default CodeSnippet;

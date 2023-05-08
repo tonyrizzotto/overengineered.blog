@@ -10,9 +10,10 @@ const makeTheme = ({ mode, shouldPlayTransition }) => createTheme({
         default: '#091A28',
         header: '#212429',
         accent: '#01933F',
-        codeSnippet: '#0E2233',
+        codeSnippet: 'hsla(220, 6%, 87%, 0.90)',
       },
       text: {
+        codeSnippet: '#3a3a3a',
         primary: '#d9d6db',
         primaryAccent: '#83C120',
       },
@@ -25,8 +26,21 @@ const makeTheme = ({ mode, shouldPlayTransition }) => createTheme({
         codeSnippet: 'hsla(220, 6%, 87%, 0.90)',
       },
       text: {
+        codeSnippet: '#3a3a3a',
         primary: '#3a3a3a',
         primaryAccent: '#83C120',
+      },
+    }),
+  },
+  custom: {
+    ...(mode === 'light' && {
+      shadows: {
+        codeSnippet: '0px 8px 9px -5px rgba(0,0,0,0.2),0px 15px 22px 2px rgba(0,0,0,0.14),0px 6px 28px 5px rgba(0,0,0,0.12)',
+      },
+    }),
+    ...(mode === 'dark' && {
+      shadows: {
+        codeSnippet: 'none',
       },
     }),
   },
@@ -41,42 +55,30 @@ const makeTheme = ({ mode, shouldPlayTransition }) => createTheme({
       code: 'Source Code Pro, sans-serif',
     },
     h1: {
-      fontSize: '6.9vw',
+      fontSize: '4rem',
       [breakpoints.up('md')]: {
-        fontSize: '5.9vw',
-      },
-      [breakpoints.up('md')]: {
-        fontSize: '6.2vw',
+        fontSize: '6rem',
       },
     },
     h3: {
-      fontSize: '3.6vw',
+      fontSize: '2rem',
       [breakpoints.up('md')]: {
-        fontSize: '3.3vw',
-      },
-      [breakpoints.up('lg')]: {
-        fontSize: '2.6vw',
+        fontSize: '2.5rem',
       },
     },
     h4: {
-      fontSize: '3.6vw',
+      fontSize: '1.5rem',
       [breakpoints.up('md')]: {
-        fontSize: '3vw',
+        fontSize: '1.7rem',
       },
       [breakpoints.up('lg')]: {
-        fontSize: '2.2vw',
-      },
-      [breakpoints.up('xl')]: {
-        fontSize: '2vw',
+        fontSize: '2.2rem',
       },
     },
     h6: {
-      fontSize: '2.8vw',
+      fontSize: '1.2rem',
       [breakpoints.up('md')]: {
-        fontSize: '1.7vw',
-      },
-      [breakpoints.up('lg')]: {
-        fontSize: '1.5vw',
+        fontSize: '1.6rem',
       },
     },
     p: {
@@ -95,6 +97,16 @@ const makeTheme = ({ mode, shouldPlayTransition }) => createTheme({
             transition: 'background .3s ease-out, color .3s linear',
           },
         }),
+      },
+    },
+    MuiDialog: {
+      defaultProps: {
+        onClick: (e) => e.stopPropagation(),
+        BackdropProps: {
+          sx: {
+            pointerEvents: 'none',
+          },
+        },
       },
     },
   },
