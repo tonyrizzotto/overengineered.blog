@@ -7,7 +7,7 @@ const CodeSnippet = styled(Box, {
   margin: '3rem 0',
   backgroundColor: palette.background.codeSnippet,
   padding: '.5rem 1rem',
-  color: palette.text.codeSnippet,
+  // color: palette.text.codeSnippet,
   borderRadius: '18px',
   boxShadow: custom.shadows.codeSnippet,
   zIndex: 100,

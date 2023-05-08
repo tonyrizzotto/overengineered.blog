@@ -19,12 +19,12 @@ Here, lies the dangers of magic.
 <br/>
 <Divider />
 <Typography variant="h5" fontWeight="bold">
-The Classic Case of Magic
+The Classic Case of <i>'Magic'</i>
 </Typography>
 
 Consider this block of code in a typical Django API View in `Python`:
 <CodeSnippet>
-```
+```python
 def patch(self, request):
   serializer = self.serialize(data=request.data)  
   try:
@@ -60,7 +60,7 @@ This is something I like to call 'Django Magic'.
 In this particular made up case, `.update()` is wildly unassuming, but houses the potential for extreme chaos. Let's consider the following.
 
 <CodeSnippet>
-```
+```python
 def update(self, data):
     if 'first_name' in data:
         update_account_settings(data)

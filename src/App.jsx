@@ -7,6 +7,7 @@ import { useQuery } from 'graphql-hooks';
 import ColorMode from './contexts/colorModeContext';
 import FunContextProvider from './contexts/funContext';
 import AppContainer from './components/AppContainer';
+import AppFooter from './components/AppFooter';
 import { useSetEnvVarContext } from './contexts/envVarContext';
 import Router from './Routes';
 import { ENV_QUERY } from './queries';
@@ -50,6 +51,7 @@ export default function App() {
           <CssBaseline enableColorScheme />
           <AppContainer>
             <Router hydrated={hydrated} />
+            <AppFooter />
           </AppContainer>
         </FunContextProvider>
       </ColorMode>

@@ -11,6 +11,7 @@ export default function AppContainer({ children }) {
     <Box
       sx={{
         margin: '0 5%',
+        height: '100vh',
         [breakpoints.up('lg')]: {
           margin: '0 auto',
           maxWidth: '1100px',
