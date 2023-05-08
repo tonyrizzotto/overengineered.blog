@@ -19,7 +19,12 @@ const start = async () => {
     // eslint-disable-next-line no-console
     console.log(await server.printRoutes());
   }
-  await server.listen({ port, host });
+
+  try {
+    await server.listen({ port, host });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 start();

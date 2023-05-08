@@ -20,7 +20,7 @@ COPY . .
 RUN npm run build
 
 # Required ENV VARS for running in a container
-ENV ADDRESS=0.0.0.0
+ENV ADDRESS='0.0.0.0'
 ARG PORT=8080
 ENV PORT=$PORT
 
