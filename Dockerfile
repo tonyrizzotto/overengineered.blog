@@ -22,6 +22,9 @@ RUN npm run build
 ENV ADDRESS=0.0.0.0
 ENV PORT=8080
 
+# Confirm NPM version
+RUN npm -version
+
 # Start the application
-CMD ["npm", "start"]
+CMD ["node", "./server"]
 
