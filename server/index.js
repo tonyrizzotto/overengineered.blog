@@ -23,6 +23,7 @@ const start = async () => {
   try {
     await server.listen({ port, host });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
   }
 };

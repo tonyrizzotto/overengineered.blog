@@ -23,7 +23,7 @@ export default function Home() {
               <Typography variant="h3">Big ideas in small doses</Typography>
               <Box paddingTop="2rem">
                 <Typography variant="h6">
-                  I can not gurantee this will be the most performant website
+                  I can not guarantee this will be the most performant website
                   you&#39;ve ever visited. What I can guarantee, however, is that I&#39;ve
                   tried my absolute best to make it not so.  👍
                 </Typography>
