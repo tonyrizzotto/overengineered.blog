@@ -1,7 +1,8 @@
 FROM node:18-alpine3.16
 
 # Set NODE_ENV for entire container
-ENV NODE_ENV=production
+ARG NODE_ENV=production
+ENV NODE_ENV=$NODE_ENV
 
 # Create app directory
 WORKDIR /app
@@ -20,7 +21,8 @@ RUN npm run build
 
 # Required ENV VARS for running in a container
 ENV ADDRESS=0.0.0.0
-ENV PORT=8080
+ARG PORT=8080
+ENV PORT=$PORT
 
 # Confirm NPM version
 RUN npm -version
