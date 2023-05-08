@@ -6,7 +6,9 @@ import useInterval from '../hooks/useInterval';
 
 const SuperContainer = styled(Box)(() => ({
   display: 'flex',
-  position: 'absolute',
+  position: 'fixed',
+  height: '100vh',
+  zIndex: -100,
 }));
 
 export const PixelRainContainer = styled('div', {
