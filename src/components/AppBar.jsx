@@ -127,7 +127,7 @@ function ResponsiveAppBar() {
                 ))}
               </Menu>
             </Box>
-            <Avatar alt="Tony Rizzotto" src={rocketLink} sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+            <Avatar alt="Tony Rizzotto" src={rocketLink} sx={{ ml: 5, display: { xs: 'flex', md: 'none' } }} />
             <Typography
               variant="h5"
               onClick={() => navigate('/')}
@@ -169,7 +169,7 @@ function ResponsiveAppBar() {
 
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Toggle Fun Mode - Alpha v0.0.1">
-                <IconButton sx={{ ml: 5 }} onClick={() => setFun((prevState) => !prevState)}>
+                <IconButton onClick={() => setFun((prevState) => !prevState)}>
                   {fun ? '🎉' : '💤'}
                 </IconButton>
               </Tooltip>
