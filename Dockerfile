@@ -13,7 +13,7 @@ COPY ["package.json", "package-lock.json", "./"]
 RUN npm ci
 
 # Copy everything in our project to the docker file
-COPY ./ ./
+COPY . .
 
 # Build the application DIST
 RUN npm run build

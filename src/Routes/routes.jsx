@@ -1,8 +1,8 @@
-import Blog from '../pages/Blog';
+import Blog from '../Pages/Blog/index';
 import AppBar from '../components/AppBar';
-import Home from '../pages/Home';
+import Home from '../Pages/Home';
 import ErrorBoundary from '../components/ErrorBoundary';
-import blogMap from '../pages/Blog/blogmap';
+import blogMap from '../Pages/Blog/blogmap';
 
 /*
   https://reactrouter.com/en/main/routers/create-browser-router#createbrowserrouter
