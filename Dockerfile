@@ -7,7 +7,7 @@ ENV NODE_ENV=production
 WORKDIR /app
 
 # Copy over package files
-COPY ["package.json", "package-lock.json*", "./"]
+COPY ["package.json", "package-lock.json", "./"]
 
 # Install Dependencies based on package-lock
 RUN npm ci
