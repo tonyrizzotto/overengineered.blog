@@ -1,5 +1,5 @@
 {
-  "name": "@tonyrizzotto/overengineered.dev",
+  "name": "@tonyrizzotto/overengineered.blog",
   "author": "Tony Rizzotto",
   "private": true,
   "version": "1.0.1",
@@ -37,7 +37,7 @@
     "verbose": true
   },
   "repository": {
-    "url": "https://github.com/tonyrizzotto/overengineered.dev.git"
+    "url": "https://github.com/tonyrizzotto/overengineered.blog.git"
   },
   "dependencies": {
     "@emotion/cache": "^11.10.7",
