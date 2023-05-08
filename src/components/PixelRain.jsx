@@ -79,8 +79,11 @@ export const RainDrop = styled('div')(({ theme }) => ({
 
 export function PixelRain({ play }) {
   const [rainToRender, setRainToRender] = useState([{ key: 0, rain: '', offset: 0 }]);
+
+  // play should automatically disable on the blog page, for convenience,
+  // but should be able to be toggled.
   // eslint-disable-next-line no-undef
-  const shouldPlayEffect = ['/', '/blog'].includes(window.location.pathname);
+  const shouldPlayEffect = play || ['/', '/blog'].includes(window.location.pathname);
 
   useInterval(() => {
     if (play && shouldPlayEffect) {
