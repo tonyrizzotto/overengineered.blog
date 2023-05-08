@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:18-alpine3.16
 
 # Set NODE_ENV for entire container
 ENV NODE_ENV=production
