@@ -1,4 +1,4 @@
-FROM node:18-alpine as build
+FROM node:18-alpine
 
 # Set NODE_ENV for entire container
 ENV NODE_ENV=production
@@ -22,6 +22,6 @@ RUN npm run build
 ENV ADDRESS=0.0.0.0
 ENV PORT=8080
 
-# Start the
+# Start the application
 CMD ["npm", "start"]
 
