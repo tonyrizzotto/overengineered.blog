@@ -1,5 +1,5 @@
 {
-  "name": "@tonyrizzotto/react-app-template",
+  "name": "@tonyrizzotto/overengineered.dev",
   "author": "Tony Rizzotto",
   "private": true,
   "version": "1.0.1",
@@ -37,7 +37,7 @@
     "verbose": true
   },
   "repository": {
-    "url": "https://github.com/tonyrizzotto/react-app-template.git"
+    "url": "https://github.com/tonyrizzotto/overengineered.dev.git"
   },
   "dependencies": {
     "@emotion/cache": "^11.10.7",
