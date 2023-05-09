@@ -65,7 +65,8 @@
     "react-router-dom": "^6.10.0",
     "uuid": "^9.0.0",
     "vite": "^4.2.0",
-    "vite-plugin-cjs-interop": "^0.0.8"
+    "vite-plugin-cjs-interop": "^0.0.8",
+    "vite-plugin-compression": "^0.5.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
