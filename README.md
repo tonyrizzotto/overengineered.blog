@@ -107,7 +107,7 @@ The other variables that should be set are `ADDRESS` and `PORT` and each should 
 
 All other environment variables should be declared in the project via `~/config/environment/index.js` and their respective `.env` files.
 
-DO NOT hardcode secrets into your project!!!
+DO NOT hardcode secrets into your project!!
 
 ### Tooling
 
