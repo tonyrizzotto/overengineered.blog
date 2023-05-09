@@ -55,7 +55,7 @@ potential issue with this work, yet there is a massive problem. Have you found i
 In `Python`, there exists a concept of 'magic methods', ones that will run if appended with double-underscores: like `__init__` or `__str__`, etc. If you've worked with `Python` before you've definitely seen these. These magic methods, or Dunder Methods, are not supposed to be called by you, but rather by some other action in the code.
 
 If you haven't already guess it, the here lies in the `.update()`, which can be defined as one of [Djangos custom model methods](https://docs.djangoproject.com/en/4.2/howto/custom-model-fields/#how-to-create-custom-model-fields).
-This is something I like to call 'Django Magic'.  
+This is something I like to call a 'Django Magic Method'.  
 
 In this particular made up case, `.update()` is wildly unassuming, but houses the potential for extreme chaos. Let's consider the following.
 
@@ -66,7 +66,7 @@ def update(self, data):
         update_account_settings(data)
     if 'age' in data:
         if 'age' < 16:
-            restriction_notification_update(data)
+            send_restriction_notification_update(data)
         else:
             update_account_settings(data)
     if 'email' in data:
@@ -118,13 +118,13 @@ Squashing Institutional Knowledge
 
 Mature codebases don't get mature by just being around for many years. They get there through technical dilagence, clean and purposeful code, and meaningful documentation. 
 
-Irregardless of your architecture of choice: monolith, microservice, or something in-between, there are some very simple practices that you can institute immediatley to improve your work and the future impact it will have the next time this code is revisited.
+Irregardless of your architecture of choice: monolith, microservice, or something in-between, there are some very simple practices that you can institute immediately yourself, or with your team, to improve the quality of your work and the future impact it will have the next time this code is revisited.
 
 <Typography variant="" fontWeight="bold">
 Code-as-documentation is extremely powerful
 </Typography>
 
-There is nothing more appreciated than appropriately named functions and variables, irregardless of your language of choices preferred approach. In most situations, `.update()` will be a bad name for a method, but `.update_account_by_key()` might be something more helpful down the road.
+There is nothing more appreciated than appropriately named functions and variables, irregardless of the syntactical preference of your choses language. In most situations, `.update()` will be a bad name for a method, but `.update_account_by_key()` might be something more helpful down the road.
 
 <Typography variant="" fontWeight="bold">
 Drop some comments on that bad boy
@@ -134,7 +134,7 @@ Don't be too shy to share what you were thinking. Sometimes you're thinking the 
 Comments are just as much for the reviewer of your code as they are for the next person who works on it. If you don't see comments, ask for some. If the comments are misleading or unclear, drop a request to refactor. Never compromise on clarity. One missing comment may not be the missing link to the next issue, but having that comment there ensures that it won't be.
 
 <Typography variant="" fontWeight="bold">
-Don't be afraid to afraid to **review** pull requests
+Don't be afraid to **review** pull requests
 </Typography>
 
 Many developers I've worked with have great instincts, but peer review is something that everyone struggles with. 'Courtesy' reviews do nothing for your 
@@ -150,4 +150,4 @@ Conclusion
 
 No engineering team will ever be perfect, but when it comes to developing strong team-dynamics and working procedures, the following in this article is without doubt the best place to start. 
 
-No matter how quickly you need the feature, or how much pressure comes from above, we always take the time to first understand, then implement these best practices. Without an agreeable process, small things like `.update()` can fall through the cracks and you may very well spend <i>many</i> frustrating hours trying to figure out what went wrong.
+No matter how quickly you need the feature, or how much pressure comes from above, we should always take the time to first understand, then implement these best practices. Without an agreeable process, small things like `.update()` can fall through the cracks and you may very well spend <i>many</i> frustrating hours trying to figure out what went wrong.
