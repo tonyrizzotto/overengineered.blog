@@ -9,7 +9,7 @@ import loggingConfig from './utils/index.js';
 
 export default async function createServer({ environment }) {
   const server = Fastify({
-    logger: loggingConfig[environment] || true,
+    logger: loggingConfig[environment],
     requestIdHeader: 'x-request-id',
     requestIdLogLabel: 'requestId',
     genReqId: () => v4(),

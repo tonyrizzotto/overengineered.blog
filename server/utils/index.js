@@ -8,13 +8,8 @@ const loggingConfig = {
         colorize: true,
       },
     },
-    formatters: {
-      level(label) {
-        return { severity: label };
-      },
-    },
   },
-  production: true,
+  production: false,
   test: false,
 };
 
