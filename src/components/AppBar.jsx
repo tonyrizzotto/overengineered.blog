@@ -24,7 +24,7 @@ import rocketLink from '../assets/rocket.svg';
 const pages = [
   {
     name: 'Blog',
-    url: '/blog',
+    url: '/articles',
   },
   {
     name: 'Contact',

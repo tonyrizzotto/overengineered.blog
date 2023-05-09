@@ -28,7 +28,7 @@ export default function Home() {
                   tried my absolute best to make it not so.  👍
                 </Typography>
               </Box>
-              <GiantPillButton onClick={() => navigate('/blog')} />
+              <GiantPillButton onClick={() => navigate('/articles')} />
             </Box>
           </Box>
         </Box>

@@ -14,7 +14,7 @@ export default function Blog() {
   const { setFun } = useFunContext();
   const navigate = useNavigate();
 
-  const isAtBlogHome = window.location.pathname === '/blog';
+  const isAtBlogHome = window.location.pathname === '/articles';
   const handleTitleClick = (destination) => {
     setShowBlogList((prevState) => !prevState);
     setFun(false);
@@ -23,7 +23,7 @@ export default function Blog() {
 
   const handleBackNavigation = () => {
     setShowBlogList(true);
-    navigate('/blog');
+    navigate('/articles');
   };
 
   /*

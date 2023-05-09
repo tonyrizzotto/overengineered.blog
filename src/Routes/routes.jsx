@@ -27,7 +27,7 @@ const routeConfig = [
         element: <Home />,
       },
       {
-        path: 'blog',
+        path: 'articles',
         element: <Blog />,
         children: blogPages,
       },
