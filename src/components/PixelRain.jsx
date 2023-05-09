@@ -85,7 +85,7 @@ export function PixelRain({ play }) {
   // play should automatically disable on the blog page, for convenience,
   // but should be able to be toggled.
   // eslint-disable-next-line no-undef
-  const shouldPlayEffect = play || ['/', '/blog'].includes(window.location.pathname);
+  const shouldPlayEffect = play || ['/', '/articles'].includes(window.location.pathname);
 
   useInterval(() => {
     if (play && shouldPlayEffect) {
