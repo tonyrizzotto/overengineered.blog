@@ -4,7 +4,6 @@ import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { CssBaseline } from '@mui/material';
 import { useQuery } from 'graphql-hooks';
-import { GoogleOAuthProvider } from '@react-oauth/google';
 import ColorMode from './contexts/colorModeContext';
 import FunContextProvider from './contexts/funContext';
 import AppContainer from './components/AppContainer';
@@ -46,18 +45,16 @@ export default function App() {
     return null;
   }
   return (
-    <GoogleOAuthProvider clientId={data?.getPublicEnvVars?.googleClientId}>
-      <CacheProvider value={cache}>
-        <ColorMode play={changeTheme} setPlay={setChangeTheme}>
-          <FunContextProvider>
-            <CssBaseline enableColorScheme />
-            <AppContainer>
-              <Router hydrated={hydrated} />
-              <AppFooter />
-            </AppContainer>
-          </FunContextProvider>
-        </ColorMode>
-      </CacheProvider>
-    </GoogleOAuthProvider>
+    <CacheProvider value={cache}>
+      <ColorMode play={changeTheme} setPlay={setChangeTheme}>
+        <FunContextProvider>
+          <CssBaseline enableColorScheme />
+          <AppContainer>
+            <Router hydrated={hydrated} />
+            <AppFooter />
+          </AppContainer>
+        </FunContextProvider>
+      </ColorMode>
+    </CacheProvider>
   );
 }

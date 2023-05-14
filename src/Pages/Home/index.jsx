@@ -4,7 +4,6 @@ import {
   Box,
   Typography,
 } from '@mui/material';
-import { GoogleLogin } from '@react-oauth/google';
 import PageWrapper from '../../components/PageWrapper';
 import GiantPillButton from '../../components/GiantPillButton';
 
@@ -33,7 +32,6 @@ export default function Home() {
             </Box>
           </Box>
         </Box>
-        <GoogleLogin />
       </Box>
     </PageWrapper>
   );
