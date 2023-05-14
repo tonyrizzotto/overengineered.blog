@@ -2,7 +2,7 @@ export const ENV_QUERY = `
   query Env {
     getPublicEnvVars {
       isEnabled
-      customFlag
+      googleClientId
     }
   }
 `;

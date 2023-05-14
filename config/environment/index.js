@@ -12,6 +12,6 @@ export default ({
   // Client key is exported to the client AFTER build
   client: {
     isEnabled: process.env.IS_ENABLED === 'true',
-    customFlag: process.env.CUSTOM_FLAG,
+    googleClientId: process.env.GOOGLE_OAUTH_CLIENT_ID,
   },
 });
