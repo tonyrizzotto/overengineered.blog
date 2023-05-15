@@ -3,6 +3,7 @@ export const ENV_QUERY = `
     getPublicEnvVars {
       isEnabled
       googleClientId
+      googleRedirectUrl
     }
   }
 `;

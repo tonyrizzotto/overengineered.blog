@@ -1,6 +1,7 @@
 type PublicEnv {
   isEnabled: Boolean
   googleClientId: String
+  googleRedirectUrl: String
 }
 
 type Query {

@@ -13,5 +13,6 @@ export default ({
   client: {
     isEnabled: process.env.IS_ENABLED === 'true',
     googleClientId: process.env.GOOGLE_OAUTH_CLIENT_ID,
+    googleRedirectUrl: process.env.GOOGLE_OAUTH_REDIRECT_URL,
   },
 });

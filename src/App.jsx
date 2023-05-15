@@ -24,7 +24,7 @@ export default function App() {
   const [hydrated, setHydrated] = useState(false);
   const [changeTheme, setChangeTheme] = useState(false);
   const { setEnvVars } = useSetEnvVarContext();
-  const { loading, data = { getPublicEnvVars: {} } } = useQuery(ENV_QUERY);
+  const { loading, data } = useQuery(ENV_QUERY);
   // After App has mounted, set hydrated to true
   useEffect(() => {
     setHydrated(true);
@@ -32,10 +32,10 @@ export default function App() {
 
   // Aside from hydration, we only want to rerender the initial app if the ENV Query has finished.
   useEffect(() => {
-    if (!loading) {
-      setEnvVars(data.getPublicEnvVars);
+    if (hydrated && !loading) {
+      setEnvVars(data?.getPublicEnvVars);
     }
-  }, []);
+  }, [loading]);
 
   /*
     We only want to mount our app if it has hydrated on the screen.

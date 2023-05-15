@@ -18,4 +18,11 @@ export default async function api(server) {
     const { data } = await reply.graphql(query);
     return reply.send(data.hello);
   });
+
+  server.get('/oauth/google/callback', async (request, reply) => {
+    const { code } = request.query;
+    // here we should catch the code and redirect to a page in the app
+    // this page will catch the code and
+    reply.redirect(`/login?code=${code}`);
+  });
 }
