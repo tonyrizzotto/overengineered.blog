@@ -61,7 +61,7 @@ function ResponsiveAppBar() {
     }
     if (page && page.redirect && !page.inTab) {
       window.open(destination, '_blank');
-    } else if (page.inTab) {
+    } else if (page.inTab && page.redirect) {
       window.open(destination, '_self');
     } else {
       navigate(destination);
