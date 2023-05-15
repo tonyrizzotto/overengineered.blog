@@ -164,7 +164,7 @@ function ResponsiveAppBar() {
               {menuItems.map((page) => (
                 <Typography
                   key={page.name}
-                  target={page.redirect && !page.inTab && '_blank'}
+                  target={page.redirect && !page.inTab ? '_blank' : '_self'}
                   onClick={() => handleCloseNavMenu({ page, destination: page.url })}
                   sx={{
                     margin: '0 1rem',
