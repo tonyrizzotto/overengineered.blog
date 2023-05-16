@@ -21,6 +21,14 @@ export default async function api(server) {
 
   server.get('/oauth/google/callback', async (request, reply) => {
     const { code } = request.query;
+    const { toneapi } = request.server;
+
+    const res = await toneapi.client.request({
+      method: 'GET',
+      path: '/api/v1/alivez',
+    });
+
+    console.log(res);
     // here we should catch the code and redirect to a page in the app
     // this page will catch the code and
     reply.redirect(`/login?code=${code}`);
