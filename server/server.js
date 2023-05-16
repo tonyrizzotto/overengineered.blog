@@ -6,7 +6,6 @@ import { renderToString } from 'react-dom/server';
 import { v4 } from 'uuid';
 import api from './api/index.js';
 import loggingConfig from './utils/index.js';
-import toneAPIClient from './clients/toneapi.js';
 
 export default async function createServer({ environment }) {
   const server = Fastify({
@@ -15,8 +14,6 @@ export default async function createServer({ environment }) {
     requestIdLogLabel: 'requestId',
     genReqId: () => v4(),
   });
-
-  server.decorate('toneapi', toneAPIClient());
 
   // Register entire api
   server.register(api, {

@@ -9,7 +9,7 @@ export default ({
   environment: process.env.NODE_ENV,
   address: process.env.ADDRESS,
   port: process.env.PORT,
-  toneApi: {
+  toneapi: {
     baseUrl: process.env.TONEAPI_BASEURL,
   },
   // Client key is exported to the client AFTER build
