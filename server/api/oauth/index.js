@@ -29,7 +29,7 @@ function oauthHandler(server, options, next) {
           body: await response.json(),
         }));
 
-      console.log('here is the', status, body);
+      console.log(status, body);
       // here we should catch the code and redirect to a page in the app
       // this page will catch the code and
       reply.redirect(`/login?code=${code}`);
