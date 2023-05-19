@@ -6,13 +6,12 @@ const AuthenticationContext = createContext({});
 // eslint-disable-next-line react/prop-types
 export default function AuthenticationProvider({ children }) {
   const [isAuthorized, setIsAuthorized] = useState(false);
-  const [authCookie, setAuthCookie] = useCookies(['auth']);
+  const [getAuthCookie] = useCookies(['heytony']);
 
   useEffect(() => {
-    setIsAuthorized(authCookie.auth === 'true');
-  }, [authCookie]);
-  useEffect(() => {
-    setAuthCookie('auth', true, { path: '/', secure: true });
+    if (getAuthCookie) {
+      setIsAuthorized(true);
+    }
   }, []);
   return (
     <AuthenticationContext.Provider value={isAuthorized}>

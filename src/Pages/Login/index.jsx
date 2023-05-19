@@ -9,9 +9,8 @@ import { useNavigate } from 'react-router-dom';
  make authenticated request for data.
 */
 export default function Login() {
-  // const [params] = useSearchParams();
   const navigate = useNavigate();
-  const isAuth = true;
+  const isAuth = false;
 
   useEffect(() => {
     if (isAuth) {

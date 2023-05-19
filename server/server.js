@@ -2,6 +2,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Fastify from 'fastify';
 import FastifyVite from '@fastify/vite';
+import fastifyCookie from '@fastify/cookie';
 import { renderToString } from 'react-dom/server';
 import { v4 } from 'uuid';
 import api from './api/index.js';
@@ -13,6 +14,10 @@ export default async function createServer({ environment }) {
     requestIdHeader: 'x-request-id',
     requestIdLogLabel: 'requestId',
     genReqId: () => v4(),
+  });
+
+  server.register(fastifyCookie, {
+    secret: 'my-secret',
   });
 
   // Register entire api

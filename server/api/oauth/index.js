@@ -23,16 +23,28 @@ function oauthHandler(server, options, next) {
         to the dashboard, where the token will have to be sent back to the server to request
         account data for an actual login session.
       */
-      const { status, body } = await fetch(`${toneapi.baseUrl}/api/v1/oauth/google`)
+      const { status } = await fetch(`${toneapi.baseUrl}/api/v1/oauth/google`)
         .then(async (response) => ({
           status: response.status,
           body: await response.json(),
         }));
 
-      console.log(status, body);
-      // here we should catch the code and redirect to a page in the app
-      // this page will catch the code and
-      reply.redirect(`/login?code=${code}`);
+      // here we should catch the code and redirect to the login url
+      reply.redirect(`/r/login?code=${code}`);
+    },
+  });
+  server.route({
+    method: 'GET',
+    url: '/login',
+    handler: async (request, reply) => {
+      const { code } = request.query;
+
+      /*
+        here we catch the token, in the server callback.
+        Once we verify it's okay, we encode it with our signature and set the cookie
+        before redirecting to the dashboard.
+      */
+      reply.setCookie('heytony', code, { secure: true, path: '/' }).redirect('/dashboard');
     },
   });
 

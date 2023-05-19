@@ -43,6 +43,7 @@
     "@emotion/cache": "^11.10.7",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@fastify/cookie": "^8.3.0",
     "@fastify/static": "^6.10.0",
     "@fastify/vite": "^4.0.0",
     "@graphql-tools/merge": "^8.4.1",
