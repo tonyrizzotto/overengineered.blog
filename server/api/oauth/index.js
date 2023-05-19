@@ -34,7 +34,11 @@ function oauthHandler(server, options, next) {
         Once we verify it's okay, we encode it with our signature and set the cookie
         before redirecting to the dashboard.
       */
-      reply.setCookie('heytony', code, { secure: true, path: '/' }).redirect('/dashboard');
+      reply.setCookie('heytony', code, { 
+        secure: false,
+        path: '/',
+        maxAge: 36000,
+      }).redirect('/dashboard');
     },
   });
 

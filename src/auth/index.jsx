@@ -8,6 +8,7 @@ export default function AuthenticationProvider({ children }) {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [getAuthCookie] = useCookies(['heytony']);
 
+  console.log(getAuthCookie.heytony);
   useEffect(() => {
     if (getAuthCookie) {
       setIsAuthorized(true);
