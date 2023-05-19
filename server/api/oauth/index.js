@@ -29,16 +29,6 @@ function oauthHandler(server, options, next) {
           body: await response.json(),
         }));
 
-      // here we should catch the code and redirect to the login url
-      reply.redirect(`/r/login?code=${code}`);
-    },
-  });
-  server.route({
-    method: 'GET',
-    url: '/login',
-    handler: async (request, reply) => {
-      const { code } = request.query;
-
       /*
         here we catch the token, in the server callback.
         Once we verify it's okay, we encode it with our signature and set the cookie
