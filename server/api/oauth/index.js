@@ -23,22 +23,28 @@ function oauthHandler(server, options, next) {
         to the dashboard, where the token will have to be sent back to the server to request
         account data for an actual login session.
       */
-      const { status } = await fetch(`${toneapi.baseUrl}/api/v1/oauth/google`)
-        .then(async (response) => ({
-          status: response.status,
-          body: await response.json(),
-        }));
+      const res = await fetch(`${toneapi.baseUrl}/api/v1/oauth/google`, {
+        method: 'POST',
+        body: JSON.stringify({ code }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then(async (response) => ({ status: response.status, body: await response.json() }));
 
       /*
         here we catch the token, in the server callback.
         Once we verify it's okay, we encode it with our signature and set the cookie
         before redirecting to the dashboard.
       */
-      reply.setCookie('heytony', code, { 
-        secure: false,
-        path: '/',
-        maxAge: 36000,
-      }).redirect('/dashboard');
+      if (res.status === 200) {
+        reply.setCookie('heytony', res.body.token, {
+          secure: false,
+          path: '/',
+          maxAge: 36000,
+        }).redirect('/dashboard');
+      } else {
+        reply.redirect('/');
+      }
     },
   });
 

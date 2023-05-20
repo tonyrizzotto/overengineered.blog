@@ -37,11 +37,11 @@ const routeConfig = [
         path: 'login',
         element: <Login />,
       },
+      {
+        path: 'dashboard',
+        element: <Dashboard />,
+      },
     ],
-  },
-  {
-    path: 'dashboard',
-    element: <Dashboard />,
   },
 ];
 
