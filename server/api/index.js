@@ -1,7 +1,7 @@
 import mercurius from 'mercurius';
 import MercuriusValidation from 'mercurius-validation';
 import schema from './graphql/index.js';
-import oauthHandler from './oauth/index.js';
+// import oauthHandler from './oauth/index.js';
 
 export default async function api(server) {
   server.register(mercurius, {
@@ -12,7 +12,7 @@ export default async function api(server) {
   await server.register(MercuriusValidation);
 
   // register OAuth handler
-  await server.register(oauthHandler);
+  // await server.register(oauthHandler);
 
   // Example Graphql
   server.get('/example', async (request, reply) => {
