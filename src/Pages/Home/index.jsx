@@ -11,6 +11,7 @@ export default function Home() {
   const navigate = useNavigate();
   const theme = useTheme();
   const { palette, breakpoints } = theme;
+
   return (
     <PageWrapper>
       <Box sx={{ display: 'grid', [breakpoints.up('md')]: { gridTemplateColumns: '80% 20%' } }}>

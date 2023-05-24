@@ -1,6 +1,7 @@
 type PublicEnv {
   isEnabled: Boolean
-  customFlag: String
+  googleClientId: String
+  googleRedirectUrl: String
 }
 
 type Query {

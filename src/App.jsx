@@ -4,6 +4,8 @@ import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { CssBaseline } from '@mui/material';
 import { useQuery } from 'graphql-hooks';
+import { CookiesProvider } from 'react-cookie';
+import AuthenticationProvider from './auth';
 import ColorMode from './contexts/colorModeContext';
 import FunContextProvider from './contexts/funContext';
 import AppContainer from './components/AppContainer';
@@ -24,7 +26,7 @@ export default function App() {
   const [hydrated, setHydrated] = useState(false);
   const [changeTheme, setChangeTheme] = useState(false);
   const { setEnvVars } = useSetEnvVarContext();
-  const { loading, data = { getPublicEnvVars: {} } } = useQuery(ENV_QUERY);
+  const { loading, data } = useQuery(ENV_QUERY);
   // After App has mounted, set hydrated to true
   useEffect(() => {
     setHydrated(true);
@@ -32,8 +34,8 @@ export default function App() {
 
   // Aside from hydration, we only want to rerender the initial app if the ENV Query has finished.
   useEffect(() => {
-    if (!loading) {
-      setEnvVars(data.getPublicEnvVars);
+    if (hydrated && !loading) {
+      setEnvVars(data?.getPublicEnvVars);
     }
   }, [loading]);
 
@@ -49,10 +51,14 @@ export default function App() {
       <ColorMode play={changeTheme} setPlay={setChangeTheme}>
         <FunContextProvider>
           <CssBaseline enableColorScheme />
-          <AppContainer>
-            <Router hydrated={hydrated} />
-            <AppFooter />
-          </AppContainer>
+          <CookiesProvider>
+            <AuthenticationProvider>
+              <AppContainer>
+                <Router hydrated={hydrated} />
+                <AppFooter />
+              </AppContainer>
+            </AuthenticationProvider>
+          </CookiesProvider>
         </FunContextProvider>
       </ColorMode>
     </CacheProvider>

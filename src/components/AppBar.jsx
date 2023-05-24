@@ -17,24 +17,40 @@ import {
   Tooltip,
   MenuItem,
 } from '@mui/material';
+import { useEnvVarContext } from '../contexts/envVarContext';
 import { useFunContext } from '../contexts/funContext';
 import { useColorMode } from '../contexts/colorModeContext';
 import rocketLink from '../assets/rocket.svg';
+import generateGoogleOAuthRedirect from '../utils/genereateGoogleOAuthRedirect';
 
-const pages = [
+const pages = ({ googleRedirectUrl, googleClientId }) => [
   {
     name: 'Blog',
     url: '/articles',
+    redirect: false,
+    inTab: true,
+    hidden: false,
   },
   {
     name: 'Contact',
     url: 'https://www.linkedin.com/in/tony-rizzotto/',
+    redirect: true,
+    inTab: false,
+    hidden: false,
+  },
+  {
+    name: 'Login',
+    url: generateGoogleOAuthRedirect({ googleRedirectUrl, googleClientId }),
+    redirect: true,
+    inTab: true,
+    hidden: true,
   },
 ];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const { fun, setFun } = useFunContext();
+  const { envVars: { googleClientId, googleRedirectUrl } } = useEnvVarContext();
   const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
@@ -46,8 +62,10 @@ function ResponsiveAppBar() {
     if (reason && (reason === 'backdropClick' || reason === 'escapeKeyDown')) {
       return;
     }
-    if (page && page === 'Contact') {
+    if (page && page.redirect && !page.inTab) {
       window.open(destination, '_blank');
+    } else if (page.inTab && page.redirect) {
+      window.open(destination, '_self');
     } else {
       navigate(destination);
     }
@@ -56,6 +74,7 @@ function ResponsiveAppBar() {
   const theme = useTheme();
   const { toggleColorMode } = useColorMode();
 
+  const menuItems = pages({ googleClientId, googleRedirectUrl });
   return (
     <>
       <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none' }}>
@@ -112,10 +131,10 @@ function ResponsiveAppBar() {
                 }}
               >
                 {/* Mobile Menu */}
-                {pages.map((page) => (
+                {menuItems.map((page) => !page.hidden && (
                   <MenuItem key={page.name}>
                     <Typography
-                      onClick={() => handleCloseNavMenu({ page: page.name, destination: page.url })}
+                      onClick={() => handleCloseNavMenu({ page, destination: page.url })}
                       sx={{
                         textDecoration: 'none',
                         color: 'inherit',
@@ -145,11 +164,11 @@ function ResponsiveAppBar() {
             </Typography>
             <Box sx={{ flexGrow: 1, justifyContent: 'right', display: { xs: 'none', md: 'flex' } }}>
               {/* Desktop */}
-              {pages.map((page) => (
+              {menuItems.map((page) => !page.hidden && (
                 <Typography
                   key={page.name}
-                  target={page.name === 'Contact' ? '_blank' : ''}
-                  onClick={() => handleCloseNavMenu({ page: page.name, destination: page.url })}
+                  target={page.redirect && !page.inTab ? '_blank' : '_self'}
+                  onClick={() => handleCloseNavMenu({ page, destination: page.url })}
                   sx={{
                     margin: '0 1rem',
                     color: theme.palette.text.primary,

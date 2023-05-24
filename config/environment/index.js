@@ -9,9 +9,13 @@ export default ({
   environment: process.env.NODE_ENV,
   address: process.env.ADDRESS,
   port: process.env.PORT,
+  toneapi: {
+    baseUrl: process.env.TONEAPI_BASEURL,
+  },
   // Client key is exported to the client AFTER build
   client: {
     isEnabled: process.env.IS_ENABLED === 'true',
-    customFlag: process.env.CUSTOM_FLAG,
+    googleClientId: process.env.GOOGLE_OAUTH_CLIENT_ID,
+    googleRedirectUrl: process.env.GOOGLE_OAUTH_REDIRECT_URL,
   },
 });

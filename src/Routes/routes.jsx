@@ -3,6 +3,8 @@ import AppBar from '../components/AppBar';
 import Home from '../Pages/Home';
 import ErrorBoundary from '../components/ErrorBoundary';
 import blogMap from '../Pages/Blog/blogmap';
+import Login from '../Pages/Login';
+import Dashboard from '../Pages/Dashboard';
 
 /*
   https://reactrouter.com/en/main/routers/create-browser-router#createbrowserrouter
@@ -30,6 +32,14 @@ const routeConfig = [
         path: 'articles',
         element: <Blog />,
         children: blogPages,
+      },
+      {
+        path: 'login',
+        element: <Login />,
+      },
+      {
+        path: 'dashboard',
+        element: <Dashboard />,
       },
     ],
   },
