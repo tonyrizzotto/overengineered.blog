@@ -29,18 +29,21 @@ const pages = ({ googleRedirectUrl, googleClientId }) => [
     url: '/articles',
     redirect: false,
     inTab: true,
+    hidden: false,
   },
   {
     name: 'Contact',
     url: 'https://www.linkedin.com/in/tony-rizzotto/',
     redirect: true,
     inTab: false,
+    hidden: false,
   },
   {
     name: 'Login',
     url: generateGoogleOAuthRedirect({ googleRedirectUrl, googleClientId }),
     redirect: true,
     inTab: true,
+    hidden: true,
   },
 ];
 
@@ -128,7 +131,7 @@ function ResponsiveAppBar() {
                 }}
               >
                 {/* Mobile Menu */}
-                {menuItems.map((page) => (
+                {menuItems.map((page) => !page.hidden && (
                   <MenuItem key={page.name}>
                     <Typography
                       onClick={() => handleCloseNavMenu({ page, destination: page.url })}
@@ -161,7 +164,7 @@ function ResponsiveAppBar() {
             </Typography>
             <Box sx={{ flexGrow: 1, justifyContent: 'right', display: { xs: 'none', md: 'flex' } }}>
               {/* Desktop */}
-              {menuItems.map((page) => (
+              {menuItems.map((page) => !page.hidden && (
                 <Typography
                   key={page.name}
                   target={page.redirect && !page.inTab ? '_blank' : '_self'}
