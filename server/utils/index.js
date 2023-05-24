@@ -35,20 +35,6 @@ export const loggingConfig = {
   test: false,
 };
 
-export function onReponseLoggingConfig(request, reply) {
-  const { method, url } = request.raw;
-  const { statusCode, getResponseTime } = reply;
-
-  const responseTime = Math.round(getResponseTime());
-  request.log.info({
-    message: `Response ${method} ${url} ${statusCode} ${responseTime}`,
-    method,
-    url,
-    statusCode,
-    responseTime,
-  });
-}
-
 export function shouldNotLogOutput(url) {
   if (url.startsWith('/assets')
     || url.startsWith('/auth')
@@ -74,3 +60,30 @@ export function shouldNotLogOutput(url) {
   }
   return false;
 }
+
+export const onRequestLogging = async (request, reply) => {
+  // In production, lets not log any request to the directories containing assets or src code
+  if (shouldNotLogOutput(request.url)) {
+    return;
+  }
+  request.log.info({
+    message: `Request received: ${request.method} ${request.url}`,
+    headers: request.headers,
+    method: request.method,
+    url: request.url,
+  });
+  reply.header('x-request-id', request.id);
+};
+
+export const onResponseLogging = async (request, reply) => {
+  if (shouldNotLogOutput(request.url)) {
+    return;
+  }
+  request.log.info({
+    message: `Request Completed: ${request.method} ${request.url} ${reply.statusCode} ${Math.round(reply.getResponseTime())}ms`,
+    headers: request.headers,
+    method: request.method,
+    url: request.url,
+    response: reply,
+  });
+};
