@@ -13,8 +13,8 @@ import AppBar from '../components/AppBar';
   Routes wrapped in more than 1 route. This ensures the minimum bundle size in
   production only.
  */
-const Home = lazy(() => import('../pages/Home'));
-const Blog = lazy(() => import('../pages/Blog'));
+const Home = lazy(() => import('../Pages/Home'));
+const Blog = lazy(() => import('../Pages/Blog'));
 
 // Posts
 const DangersOfMagic = lazy(() => import('../posts/the-dangers-of-magic.mdx'));
