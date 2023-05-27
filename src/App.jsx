@@ -1,9 +1,10 @@
 // /* global localStorage */
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { CssBaseline } from '@mui/material';
-import { useQuery } from 'graphql-hooks';
+import { useManualQuery } from 'graphql-hooks';
 import { CookiesProvider } from 'react-cookie';
 import AuthenticationProvider from './auth';
 import ColorMode from './contexts/colorModeContext';
@@ -11,7 +12,7 @@ import FunContextProvider from './contexts/funContext';
 import AppContainer from './components/AppContainer';
 import AppFooter from './components/AppFooter';
 import { useSetEnvVarContext } from './contexts/envVarContext';
-import Router from './Routes';
+import Router from './routes';
 import { ENV_QUERY } from './queries';
 
 const cache = createCache({
@@ -26,7 +27,13 @@ export default function App() {
   const [hydrated, setHydrated] = useState(false);
   const [changeTheme, setChangeTheme] = useState(false);
   const { setEnvVars } = useSetEnvVarContext();
-  const { loading, data } = useQuery(ENV_QUERY);
+  const [queryEnvVars] = useManualQuery(ENV_QUERY);
+
+  const handleSetEnvVars = async () => {
+    const data = await queryEnvVars();
+    setEnvVars(data.getPublicEnvVars);
+  };
+
   // After App has mounted, set hydrated to true
   useEffect(() => {
     setHydrated(true);
@@ -34,10 +41,10 @@ export default function App() {
 
   // Aside from hydration, we only want to rerender the initial app if the ENV Query has finished.
   useEffect(() => {
-    if (hydrated && !loading) {
-      setEnvVars(data?.getPublicEnvVars);
+    if (hydrated) {
+      handleSetEnvVars();
     }
-  }, [loading]);
+  }, [hydrated]);
 
   /*
     We only want to mount our app if it has hydrated on the screen.
@@ -47,20 +54,26 @@ export default function App() {
     return null;
   }
   return (
-    <CacheProvider value={cache}>
-      <ColorMode play={changeTheme} setPlay={setChangeTheme}>
-        <FunContextProvider>
-          <CssBaseline enableColorScheme />
-          <CookiesProvider>
-            <AuthenticationProvider>
-              <AppContainer>
-                <Router hydrated={hydrated} />
-                <AppFooter />
-              </AppContainer>
-            </AuthenticationProvider>
-          </CookiesProvider>
-        </FunContextProvider>
-      </ColorMode>
-    </CacheProvider>
+    <BrowserRouter>
+      <CacheProvider value={cache}>
+        <ColorMode play={changeTheme} setPlay={setChangeTheme}>
+          <FunContextProvider>
+            <CssBaseline enableColorScheme />
+            <CookiesProvider>
+              {/* TODO: Suspense needs to be configured with a fallback */}
+              {/* https://react.dev/reference/react/Suspense */}
+              <Suspense>
+                <AuthenticationProvider>
+                  <AppContainer>
+                    <Router hydrated={hydrated} />
+                    <AppFooter />
+                  </AppContainer>
+                </AuthenticationProvider>
+              </Suspense>
+            </CookiesProvider>
+          </FunContextProvider>
+        </ColorMode>
+      </CacheProvider>
+    </BrowserRouter>
   );
 }

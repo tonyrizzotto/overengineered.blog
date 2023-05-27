@@ -50,7 +50,7 @@ const pages = ({ googleRedirectUrl, googleClientId }) => [
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const { fun, setFun } = useFunContext();
-  const { envVars: { googleClientId, googleRedirectUrl } } = useEnvVarContext();
+  const { envVars: { googleClientId, googleRedirectUrl } = {} } = useEnvVarContext();
   const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
