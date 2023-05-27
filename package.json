@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node ./server",
+    "start:prod": "npm run build && export NODE_ENV=production && npm start",
     "dev": "export NODE_ENV=local && nodemon ./server",
     "lint": "eslint .",
     "lint-fix": "eslint --fix .",

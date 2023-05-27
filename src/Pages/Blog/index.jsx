@@ -1,7 +1,6 @@
-/* global window */
-import { useEffect, useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
-import { Box, Button, Typography } from '@mui/material';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Box, Typography } from '@mui/material';
 import { useFunContext } from '../../contexts/funContext';
 import PageWrapper from '../../components/PageWrapper';
 import BlogWrapper from '../../components/BlogWrapper';
@@ -14,16 +13,10 @@ export default function Blog() {
   const { setFun } = useFunContext();
   const navigate = useNavigate();
 
-  const isAtBlogHome = window.location.pathname === '/articles';
   const handleTitleClick = (destination) => {
     setShowBlogList((prevState) => !prevState);
     setFun(false);
     navigate(destination);
-  };
-
-  const handleBackNavigation = () => {
-    setShowBlogList(true);
-    navigate('/articles');
   };
 
   /*
@@ -41,20 +34,10 @@ export default function Blog() {
     </Box>
   ));
 
-  useEffect(() => {
-    if (isAtBlogHome) {
-      setShowBlogList(true);
-    } else {
-      setShowBlogList(false);
-    }
-  }, [isAtBlogHome]);
-
   return (
     <PageWrapper>
       <BlogWrapper>
-        {!isAtBlogHome && (<Button onClick={handleBackNavigation}>Go Back</Button>)}
         <PostContainer showBlogList={showBlogList}>{posts}</PostContainer>
-        <Outlet />
       </BlogWrapper>
     </PageWrapper>
   );

@@ -1,9 +1,33 @@
 import PropTypes from 'prop-types';
+import { lazy } from 'react';
 import {
-  createBrowserRouter,
-  RouterProvider,
+  Outlet,
+  Routes,
+  Route,
 } from 'react-router-dom';
-import routes from './routes';
+import AppBar from '../components/AppBar';
+
+/*
+  All page imports should be Lazy loaded to reduce loading time and bundle size.
+  Vite exhibits this behavior by default, but does not gurantee lazy loading in
+  Routes wrapped in more than 1 route. This ensures the minimum bundle size in
+  production only.
+ */
+const Home = lazy(() => import('../pages/Home'));
+const Blog = lazy(() => import('../pages/Blog'));
+
+// Posts
+const DangersOfMagic = lazy(() => import('../posts/the-dangers-of-magic.mdx'));
+
+const UNAUTHENTICATED = [
+  <Route key="overengineered" path="/" element={<AppBar />}>
+    <Route index element={<Home />} />
+    <Route path="articles" element={<Outlet />}>
+      <Route index element={<Blog />} />
+      <Route path="the-dangers-of-magic" element={<DangersOfMagic />} />
+    </Route>
+  </Route>,
+];
 
 /*
   The `hydrated` prop is a sign the app has been loaded in the browser and it is
@@ -11,10 +35,11 @@ import routes from './routes';
   and the app will error out.
 */
 export default function Router({ hydrated }) {
-  const router = createBrowserRouter(routes);
   if (hydrated) {
     return (
-      <RouterProvider router={router} />
+      <Routes>
+        {UNAUTHENTICATED}
+      </Routes>
     );
   }
 

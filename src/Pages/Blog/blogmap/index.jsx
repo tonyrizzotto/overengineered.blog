@@ -1,5 +1,3 @@
-import Posts from '../../../posts';
-
 const blogMap = [
   // {
   //   metadata: {
@@ -18,7 +16,6 @@ const blogMap = [
       date: 'May 7th, 2023',
       length: '🔥 🔥 🔥',
     },
-    element: <Posts.NumberOne />,
     path: 'the-dangers-of-magic',
   },
 ];
