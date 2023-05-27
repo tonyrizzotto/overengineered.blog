@@ -12,7 +12,7 @@ import FunContextProvider from './contexts/funContext';
 import AppContainer from './components/AppContainer';
 import AppFooter from './components/AppFooter';
 import { useSetEnvVarContext } from './contexts/envVarContext';
-import Router from './routes';
+import Router from '@/routes';
 import { ENV_QUERY } from './queries';
 
 const cache = createCache({

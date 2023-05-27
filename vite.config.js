@@ -1,4 +1,4 @@
-import { join, dirname } from 'node:path';
+import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import mdx from '@mdx-js/rollup';
@@ -21,6 +21,11 @@ export default defineConfig({
       jsxImportSource: '@emotion/react',
     }),
   ],
+  resolve: {
+    alias: {
+      '@': resolve(dirname(fileURLToPath(new URL(import.meta.url))), 'src'),
+    },
+  },
   mode: 'production',
   build: {
     manifest: true,
